@@ -1,0 +1,122 @@
+<br /><br /><br /><br /><br /><br />
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Client Register</title>
+    <!-- <link rel="stylesheet" href="Reg.css" /> -->
+</head>
+
+<body>
+    <div class="header">
+        <h2>Enter Your Medicne</h2>
+    </div>
+
+    <form method="post" action="phpedit.php">
+        <div class="input-group">
+            <label>Medicne Name:&nbsp;&nbsp;</label>
+
+            <input type="text" name="Drink_stock" style="width: 20%" placeholder="Name" />
+        </div>
+        <br />
+
+        <div class="input-group">
+            <div class="help-tip" style="margin-right: 50%; margin-top: -2%">
+                <p>Antibiotics 500Mg</p>
+            </div>
+            <label>Quantity(milligram):</label>&nbsp;&nbsp;
+
+            <input type="number" id="quantity" name="quantity" min="0" max="100" step="5" value="30" style="width: 10%" required />
+        </div>
+        <br />
+        <div class="input-group">
+            <div class="help-tip" style="margin-right: 75%; margin-top: -1%">
+                <p>you can choםse more then one</p>
+            </div>
+            <label>Taking Time:</label>
+            <!-- <div style="border: solid"> -->
+        </div>
+
+        <div>
+            <label style="font-size: 20px">
+          <input type="radio" name="Price" />&nbsp;&nbsp; Morning</label
+        ><br /><br />
+        <label style="font-size: 20px">
+          <input type="radio" name="Price" />&nbsp;&nbsp;Noon</label
+        ><br /><br />
+        <label style="font-size: 20px">
+          <input type="radio" name="Price" />&nbsp;&nbsp;Evening</label
+        ><br /><br />
+        <!-- </div> -->
+      </div>
+
+      <div class="input-group">
+        <label>Amount of pills (per take): </label>&nbsp;&nbsp;
+            <div class="help-tip" style="margin-right: 46%; margin-top: -2%">
+                <p>Twice a day 2 pills in one take</p>
+            </div>
+            <br />
+            <input type="number" id="quantity" name="quantity" min="0" max="100" step="1" value="0" style="width: 10%" required />
+        </div>
+        <br />
+        <div class="input-group">
+            <label>Caplets by hour: &nbsp;&nbsp;</label>
+            <div class="help-tip" style="margin-right: 60%; margin-top: -2%">
+                <p>Between taking a pill should wait 4 hours</p>
+            </div>
+            <input type="number" id="quantity" name="quantity" min="0" max="100" step="1" value="0" style="width: 10%" required />
+        </div>
+
+        <div class="input-group">
+            <button type="submit" class="btn" name="register_btn">Submit</button>
+        </div>
+    </form>
+</body>
+
+</html>
+<!-- <body>
+    <form style="border: solid; width: 50%; margin-left: 20%">
+      
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <label class="form-label" for="form6Example1">Medicne Name?</label>
+                    <input type="text" id="form6Example1" class="form-control" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <label class="form-label" for="form6Example2">Quantity(milligram)</label
+          >
+          <input type="text" id="form6Example2" class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input type="text" id="form6Example3" class="form-control" />
+      <label class="form-label" for="form6Example3">Company name</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="text" id="form6Example4" class="form-control" />
+                    <label class="form-label" for="form6Example4">Address</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="email" id="form6Example5" class="form-control" />
+                    <label class="form-label" for="form6Example5">Email</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="number" id="form6Example6" class="form-control" />
+                    <label class="form-label" for="form6Example6">Phone</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                    <label class="form-label" for="form6Example7">Additional information</label
+      >
+    </div>
+  </form>
+</body> -->

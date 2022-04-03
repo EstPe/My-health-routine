@@ -1,0 +1,126 @@
+<!-- <body style="background-image: url(https://previews.123rf.com/images/saenal78/saenal781501/saenal78150100004/35268645-health-design-elements-medical-background-vector-illustration.jpg); background-repeat: no-repeat; background-size: 100% 100%; background-position-y: 100% 100%;">
+    <br><br><br>
+    <div class="mainLog" style="height: 550px;">
+        <p class="sign" align="center">Sign in</p>
+        <form class="form1" (ngSubmit)="onSubmit()" style="padding:5%;">
+            <fieldset>
+                <input class="un " type="text" align="center" placeholder="Email" [(ngModel)]="user.email" required name="Email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <small class="pass" *ngIf="!email?.valid && (email?.dirty || email?.touched)" style="color: brown;margin-left: 30%;">Invalid Email</small>
+                <input class="un" type="text" placeholder="Name" id="Name" name="Name" [(ngModel)]="user.name">
+                <input class="pass" type="password" align="center" placeholder="Password" ngModel required password minlength="8" name="Password" [(ngModel)]="user.password" #passw="ngModel">
+                <small class="pass" *ngIf="!passw?.valid && (passw?.dirty || passw?.touched)" style="color: brown;margin-left: 30%;">Invalid password</small>
+                <input class="pass" type="text" minlength="10" placeholder="Phone number" id="Phone" name="Phone" [(ngModel)]="user.phone">
+                <br>
+                <input type="radio" value="male" name="gender" [(ngModel)]="gender"> Male
+                <input type="radio" value="female" name="gender" [(ngModel)]="gender"> Female
+
+            </fieldset>
+            <br>
+            <button type="submit" class="submit">Submit</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" routerLink="/login" class="submit">login</button>
+            <br><br><br><br>
+        </form>
+
+    </div>
+    <br><br><br><br><br><br><br>
+
+</body> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Login Page in HTML with CSS Code Example</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+</head>
+<br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br />
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="box-form">
+        <div class="left" style="width: 55%">
+            <div class="overlay">
+                <h1>My Health Routine</h1>
+
+                <span> </span>
+            </div>
+        </div>
+        <div class="right" style="width: 40%">
+            <br /><br /><br /><br /><br /><br /><br />
+            <h5>Sing up</h5>
+            <br /><br /><br /><br /><br />
+
+            <div class="inputs">
+                <input type="text " placeholder="user name " />
+                <br />
+                <input type="password" placeholder="Password" ngModel required password minlength="8" name="Password" [(ngModel)]="user.password" #passw="ngModel" />
+                <small class="pass" *ngIf="!passw?.valid && (passw?.dirty || passw?.touched)" style="color: brown; margin-left: 30%">Invalid password</small
+          >
+          <input
+            placeholder="Email"
+            [(ngModel)]="user.email"
+            required
+            name="Email"
+            #email="ngModel"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          />
+          <small
+            class="pass"
+            *ngIf="!email?.valid && (email?.dirty || email?.touched)"
+            style="color: brown; margin-left: 30%"
+            >Invalid Email</small
+          >
+
+          <input
+            type="text"
+            minlength="10"
+            placeholder="Phone number"
+            id="Phone"
+            name="Phone"
+            [(ngModel)]="user.phone"
+          />
+          <div>
+            <span>
+              <input
+                type="radio"
+                value="male"
+                name="gender"
+                [(ngModel)]="gender"
+              />
+              Male</span
+            >
+            <span>
+              <input
+                style="border: solid"
+                type="radio"
+                value="female"
+                name="gender"
+                [(ngModel)]="gender"
+              />
+              Female</span
+            >
+          </div>
+        </div>
+
+        <br /><br />
+
+        <div class="remember-me--forget-password">
+          <!-- Angular -->
+          <label>
+            <span class="text-checkbox">Remember me</span>
+          </label>
+        </div>
+
+        <br />
+        <div style="margin-left: 14%">
+          <button routerLink="/login">Login</button>
+          <button style="margin-left: 20%">Sing up</button>
+        </div>
+      </div>
+    </div>
+    <!-- partial -->
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!-- <body style="
+    background-image: url(https://previews.123rf.com/images/saenal78/saenal781501/saenal78150100004/35268645-health-design-elements-medical-background-vector-illustration.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position-y: 100% 100%;
+  ">
+    <br /><br /><br />
+    <div class="main">
+        <p class="sign" align="center">Sign in</p>
+        <form class="form1" #login="ngForm" (ngSubmit)="onSubmit(login)">
+            <fieldset>
+                <input class="un" type="text" align="center" placeholder="Email" ngModel name="Email1" />
+                <input class="pass" type="password" align="center" placeholder="password" minlength="8" ngModel required name="Password1" #passw="ngModel" />
+
+                <small class="pass" *ngIf="!passw?.valid && (passw?.dirty || passw?.touched)" style="color: brown; margin-left: 30%">Invalid password</small
+        >
+      </fieldset>
+      <br />
+
+      <button type="submit" class="submit">Submit</button>&nbsp;&nbsp;&nbsp;
+      <button type="button" class="submit" routerLink="/register">
+        Registration
+      </button>
+    </form>
+  </div>
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</body> -->
+<br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br />
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Login Page in HTML with CSS Code Example</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="box-form">
+        <div class="left">
+            <div class="overlay">
+                <h1>My Health Routine</h1>
+                <p>
+                    App that help you to follow after your regular medicines or permanent,Improves your quality of life!
+                </p>
+            </div>
+        </div>
+
+        <div class="right" style="width: 45%">
+            <br /><br /><br /><br /><br /><br /><br />
+            <h5>Login</h5>
+            <br /><br /><br /><br /><br />
+
+            <p>
+                Don't have an account? <a href="#">Creat Your Account</a> it takes less than a minute
+            </p>
+            <div class="inputs">
+                <input type="text" placeholder="user name" />
+                <br />
+                <input type="password" placeholder="password" />
+            </div>
+
+            <br /><br />
+
+            <div class="remember-me--forget-password">
+                <!-- Angular -->
+                <label>
+            <input type="checkbox" name="item" checked />
+            <span class="text-checkbox">Remember me</span>
+          </label>
+                <a href="#menu">forget password?</a>
+            </div>
+
+            <br />
+            <div style="margin-left: 14%">
+                <button>Login</button>
+                <button style="margin-left: 20%" routerLink="/register">
+            Sing up
+          </button>
+            </div>
+        </div>
+    </div>
+    <!-- partial -->
+</body>
+
+</html>

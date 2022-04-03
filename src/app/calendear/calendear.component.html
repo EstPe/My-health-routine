@@ -1,0 +1,388 @@
+<div class="container py-5">
+    <!-- For Demo Purpose -->
+    <header class="text-center text-white mb-5">
+        <h1 class="display-4">Bootstrap Calendar</h1>
+        <p class="font-italic mb-0">
+            A nicely-designed Bootstrap calendar widget. This calendar is just a for design purpose, you can make it work.
+        </p>
+        <p class="font-italic">
+            Snippet By
+            <a href="https://bootstrapious.com" class="text-white">
+                <u>Bootstrapious</u></a>
+        </p>
+    </header>
+    <!-- <v-date-picker v-model="date" /> -->
+    <!-- Calendar -->
+    <div class="calendar shadow bg-white p-5">
+        <div class="d-flex align-items-center">
+            <button type="button" (click)="changeDate()">click</button>
+            <i class="fa fa-calendar fa-3x mr-3"></i>
+            <h2 class="month font-weight-bold mb-0 text-uppercase">
+                {{ date }}
+            </h2>
+            <button type="button" (click)="goFowardDate()">click</button>
+        </div>
+        <p class="font-italic text-muted mb-5">No events for this day.</p>
+        <ol class="day-names list-unstyled">
+            <li class="font-weight-bold text-uppercase">Sun</li>
+            <li class="font-weight-bold text-uppercase">Mon</li>
+            <li class="font-weight-bold text-uppercase">Tue</li>
+            <li class="font-weight-bold text-uppercase">Wed</li>
+            <li class="font-weight-bold text-uppercase">Thu</li>
+            <li class="font-weight-bold text-uppercase">Fri</li>
+            <li class="font-weight-bold text-uppercase">Sat</li>
+        </ol>
+        <div>
+            <!-- <ol class="days list-unstyled" *ngFor="let i of index">
+                <li>
+                    <div class="date">{{ i }}</div>
+                    <div class="event bg-success">Event with Long Name</div>
+                </li>
+            </ol> -->
+
+            <ol class="days list-unstyled">
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            1
+            <div class="event bg-success" style="width: 130px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            2
+            <div class="event bg-success" style="width: 130px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            3
+            <div class="event bg-success" style="width: 130px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            4
+            <div class="event bg-success" style="width: 130px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            5
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            6
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            7
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            8
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            9
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            10
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            11
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            12
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <!-- <li>
+                    <div class="date">13</div>
+                    <div class="event all-day begin span-2 bg-warning">Event Name</div>
+                </li> -->
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            13
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            14
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            15
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            16
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            17
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            18
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            19
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            20
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <!-- <li>
+                    <div class="date">21</div>
+                    <div class="event bg-primary">Event Name</div>
+                    <div class="event bg-success">Event Name</div>
+                </li> -->
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            21
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            22
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            23
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            24
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            25
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            26
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li>
+            27
+            <div class="event bg-success" style="width: 145px">
+              Event with Long Name
+            </div>
+          </li>
+        </button>
+                <ng-container [ngSwitch]="month1">
+                    <ng-container *ngSwitchCase="march">
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                28
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                29
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                30
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                31
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="march1 || ester">
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                28
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                29
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                30
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                31
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="march12 || ester12">
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                28
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                29
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                        <button type="button" class="btn btn-outline-secondary">
+              <li>
+                30
+                <div class="event bg-success" style="width: 145px">
+                  Event with Long Name
+                </div>
+              </li>
+            </button>
+                    </ng-container>
+                </ng-container>
+                <button type="button" class="btn btn-outline-secondary">
+          <li class="outside" style="width: 140px">
+            <div class="date">1</div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li class="outside" style="width: 140px">
+            <div class="date">2</div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li class="outside" style="width: 140px">
+            <div class="date">3</div>
+          </li>
+        </button>
+                <button type="button" class="btn btn-outline-secondary">
+          <li class="outside" style="width: 140px">
+            <div class="date">4</div>
+          </li>
+        </button>
+            </ol>
+        </div>
+    </div>
+</div>
