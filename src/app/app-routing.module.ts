@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CalendearComponent } from './calendear/calendear.component';
 import { CartComponent } from './cart/cart.component';
 import { EnterAMedicineComponent } from './enter-a-medicine/enter-a-medicine.component';
+import { HealthStatementComponent } from './health-statement/health-statement.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NaturalProductsComponent } from './natural-products/natural-products.component';
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: 'Search-For-A-Pharmacy',
     component: SearchForAPharmacyComponent,
+  },
+  {
+    path: 'Health-Statement',
+    component: HealthStatementComponent,
   },
   {
     path: 'Enter-Med',

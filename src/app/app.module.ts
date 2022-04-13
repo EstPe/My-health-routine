@@ -12,7 +12,7 @@ import { CalendearComponent } from './calendear/calendear.component';
 import { EnterAMedicineComponent } from './enter-a-medicine/enter-a-medicine.component';
 import { NaturalProductsComponent } from './natural-products/natural-products.component';
 import { SearchForAPharmacyComponent } from './search-for-a-pharmacy/search-for-a-pharmacy.component';
-import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -22,6 +22,7 @@ import { CartComponent } from './cart/cart.component';
 import { ProductsComponent } from './products/products.component';
 import { CalendarModule } from 'angular-calendar';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { HealthStatementComponent } from './health-statement/health-statement.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,6 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     EnterAMedicineComponent,
     NaturalProductsComponent,
     SearchForAPharmacyComponent,
-    QuestionnaireComponent,
     HomeComponent,
     NavbarComponent,
     SidebarComponent,
@@ -41,6 +41,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     CartComponent,
     ProductsComponent,
     ProductDetailsComponent,
+    HealthStatementComponent,
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,7 @@
     <br><br><br><br><br><br><br>
 
 </body> -->
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -39,7 +39,6 @@
 <br /><br /><br /><br /><br />
 
 <body>
-    <!-- partial:index.partial.html -->
     <div class="box-form">
         <div class="left" style="width: 55%">
             <div class="overlay">
@@ -50,7 +49,7 @@
         </div>
         <div class="right" style="width: 40%">
             <br /><br /><br /><br /><br /><br /><br />
-            <h5>Sing up</h5>
+            <h5>Sign up</h5>
             <br /><br /><br /><br /><br />
 
             <div class="inputs">
@@ -107,20 +106,133 @@
 
         <br /><br />
 
-        <div class="remember-me--forget-password">
-          <!-- Angular -->
-          <label>
-            <span class="text-checkbox">Remember me</span>
-          </label>
-        </div>
+        <p>
+          aAfter sign up there will be a Health statement that you must fill out
+          it takes less than a minute
+        </p>
 
         <br />
         <div style="margin-left: 14%">
           <button routerLink="/login">Login</button>
-          <button style="margin-left: 20%">Sing up</button>
+          <button style="margin-left: 20%" routerLink="/Health-Statement">
+            submit
+          </button>
         </div>
       </div>
     </div>
-    <!-- partial -->
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Responsive Loginform</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <!-- LOGIN MODULE -->
+    <div class="login">
+        <div class="wrap" style="margin-left: 38%">
+            <!-- TOGGLE -->
+            <div id="toggle-wrap">
+                <div id="toggle-terms">
+                    <div id="cross">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- TERMS -->
+            <div class="terms">
+                <h2>dp Terms of Service</h2>
+                <p class="small">Last modified: September 23, 2017</p>
+                <h3>Welcome to dp</h3>
+                <p>
+                    By using our Services, you are agreeing to these terms. Please read them carefully.
+                </p>
+            </div>
+
+            <!-- RECOVERY -->
+            <div class="recovery">
+                <h2>Password Recovery</h2>
+                <p>
+                    Enter either the <strong>email address</strong> or
+                    <strong>username</strong> on the account and
+                    <strong>click Submit</strong>
+                </p>
+                <p>We'll email instructions on how to reset your password.</p>
+                <form class="recovery-form" action="" method="post">
+                    <input type="text" class="input" id="user_recover" placeholder="Enter Email or Username Here" />
+                    <input type="submit" class="button" value="Submit" />
+                </form>
+                <p class="mssg">
+                    An email has been sent to you with further instructions.
+                </p>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <div class="user">
+                <!-- ACTIONS
+                    <div class="actions">
+                        <a class="help" href="#signup-tab-content">Sign Up</a><a class="faq" href="#login-tab-content">Login</a>
+                    </div>
+                    -->
+                <div class="form-wrap">
+                    <!-- TABS -->
+                    <div class="tabs">
+                        <h3 class="login-tab">
+                            <a class="log-in" routerLink="/login" href="#login-tab-content"><span>Login</span></a
+                >
+              </h3>
+              <h3 class="signup-tab">
+                <a class="sign-up active" href="#signup-tab-content"
+                  ><span>Sign Up</span></a
+                >
+              </h3>
+            </div>
+            <!-- TABS CONTENT -->
+            <div class="tabs-content">
+              <!-- TABS CONTENT LOGIN -->
+              <div id="login-tab-content" class="active">
+                <form class="signup-form" action="" method="post">
+                  <input
+                    type="email"
+                    class="input"
+                    id="user_email"
+                    autocomplete="off"
+                    placeholder="Email"
+                  />
+                  <input
+                    type="text"
+                    class="input"
+                    id="user_name"
+                    autocomplete="off"
+                    placeholder="Username"
+                  />
+                  <input
+                    type="password"
+                    class="input"
+                    id="user_pass"
+                    autocomplete="off"
+                    placeholder="Password"
+                  />
+                  <input type="submit" class="button" value="Sign Up" />
+                </form>
+              </div>
+              <!-- TABS CONTENT SIGNUP -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    ></script>
+    <script type="text/javascript" src="script.js"></script>
   </body>
 </html>

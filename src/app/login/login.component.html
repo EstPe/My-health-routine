@@ -12,8 +12,7 @@
                 <input class="un" type="text" align="center" placeholder="Email" ngModel name="Email1" />
                 <input class="pass" type="password" align="center" placeholder="password" minlength="8" ngModel required name="Password1" #passw="ngModel" />
 
-                <small class="pass" *ngIf="!passw?.valid && (passw?.dirty || passw?.touched)" style="color: brown; margin-left: 30%">Invalid password</small
-        >
+               
       </fieldset>
       <br />
 
@@ -25,14 +24,135 @@
   </div>
   <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </body> -->
-<br /><br /><br /><br /><br />
-<br /><br /><br /><br /><br />
-
 <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Responsive Loginform</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <!-- LOGIN MODULE -->
+    <div class="login">
+        <div class="wrap" style="margin-left: 38%">
+            <!-- TOGGLE -->
+            <div id="toggle-wrap">
+                <div id="toggle-terms">
+                    <div id="cross">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- TERMS -->
+            <div class="terms">
+                <h2>dp Terms of Service</h2>
+            </div>
+
+            <!-- RECOVERY -->
+            <div class="recovery">
+                <h2>Password Recovery</h2>
+                <p>
+                    Enter either the <strong>email address</strong> or
+                    <strong>username</strong> on the account and
+                    <strong>click Submit</strong>
+                </p>
+                <p>We'll email instructions on how to reset your password.</p>
+                <form class="recovery-form" action="" method="post">
+                    <input type="text" class="input" id="user_recover" placeholder="Enter Email or Username Here" />
+                    <input type="submit" class="button" value="Submit" />
+                </form>
+                <p class="mssg">
+                    An email has been sent to you with further instructions.
+                </p>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <div class="user">
+                <!-- ACTIONS
+                    <div class="actions">
+                        <a class="help" href="#signup-tab-content">Sign Up</a><a class="faq" href="#login-tab-content">Login</a>
+                    </div>
+                    -->
+                <div class="form-wrap">
+                    <!-- TABS -->
+                    <div class="tabs">
+                        <h3 class="login-tab">
+                            <a class="log-in active" href="#login-tab-content"><span>Login</span></a
+                >
+              </h3>
+              <h3 class="signup-tab">
+                <a
+                  class="sign-up"
+                  routerLink="/register"
+                  href="#signup-tab-content"
+                  ><span>Sign Up</span></a
+                >
+              </h3>
+            </div>
+            <!-- TABS CONTENT -->
+            <div class="tabs-content">
+              <!-- TABS CONTENT LOGIN -->
+              <div id="login-tab-content" class="active">
+                <form class="login-form" action="" method="post">
+                  <input
+                    type="text"
+                    class="input"
+                    id="user_login"
+                    autocomplete="off"
+                    placeholder="Email or Username"
+                  />
+                  <input
+                    type="password"
+                    class="input"
+                    id="user_pass"
+                    autocomplete="off"
+                    placeholder="Password"
+                  />
+                  <input
+                    type="checkbox"
+                    class="checkbox"
+                    checked
+                    id="remember_me"
+                  />
+                  <label for="remember_me">Remember me</label>
+                  <input type="submit" class="button" value="Login" />
+                </form>
+                <div class="help-action">
+                  <p>
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i
+                    ><a class="forgot" href="#">Forgot your password?</a>
+                            </p>
+                    </div>
+                </div>
+                <!-- TABS CONTENT SIGNUP -->
+                <div id="signup-tab-content">
+                    <form class="signup-form" action="" method="post">
+                        <input type="email" class="input" id="user_email" autocomplete="off" placeholder="Email" />
+                        <input type="text" class="input" id="user_name" autocomplete="off" placeholder="Username" />
+                        <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password" />
+                        <input type="submit" class="button" value="Sign Up" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        .
+    </div>
+    </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page in HTML with CSS Code Example</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
 
@@ -40,7 +160,6 @@
 </head>
 
 <body>
-    <!-- partial:index.partial.html -->
     <div class="box-form">
         <div class="left">
             <div class="overlay">
@@ -60,32 +179,27 @@
                 Don't have an account? <a href="#">Creat Your Account</a> it takes less than a minute
             </p>
             <div class="inputs">
-                <input type="text" placeholder="user name" />
-                <br />
-                <input type="password" placeholder="password" />
-            </div>
-
-            <br /><br />
-
-            <div class="remember-me--forget-password">
-                <!-- Angular -->
-                <label>
-            <input type="checkbox" name="item" checked />
-            <span class="text-checkbox">Remember me</span>
-          </label>
-                <a href="#menu">forget password?</a>
-            </div>
-
-            <br />
-            <div style="margin-left: 14%">
-                <button>Login</button>
-                <button style="margin-left: 20%" routerLink="/register">
-            Sing up
-          </button>
-            </div>
+                <input type="text" placeholder="Email" ngModel name="Email1" />
+                <input type="password" placeholder="password" minlength="8" ngModel required name="Password1" #passw="ngModel" />
+                <small class="pass" *ngIf="!passw?.valid && (passw?.dirty || passw?.touched)" style="color: brown; margin-left: 30%">Invalid password</small
+          >
         </div>
-    </div>
-    <!-- partial -->
-</body>
 
-</html>
+        <br /><br />
+
+        <div class="remember-me--forget-password">
+
+          <a href="#menu">forget password?</a>
+        </div>
+
+        <br />
+        <div style="margin-left: 14%">
+          <button>Login</button>
+          <button style="margin-left: 20%" routerLink="/register">
+            Sign up
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html> -->
