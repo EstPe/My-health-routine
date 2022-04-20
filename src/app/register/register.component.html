@@ -174,65 +174,133 @@
             </div>
 
             <!-- LOGIN FORM -->
-            <div class="user">
-                <!-- ACTIONS
-                    <div class="actions">
-                        <a class="help" href="#signup-tab-content">Sign Up</a><a class="faq" href="#login-tab-content">Login</a>
-                    </div>
-                    -->
+            <div class="user" style="height: 85%">
                 <div class="form-wrap">
                     <!-- TABS -->
                     <div class="tabs">
                         <h3 class="login-tab">
-                            <a class="log-in" routerLink="/login" href="#login-tab-content"><span>Login</span></a
-                >
-              </h3>
-              <h3 class="signup-tab">
-                <a class="sign-up active" href="#signup-tab-content"
-                  ><span>Sign Up</span></a
-                >
-              </h3>
-            </div>
-            <!-- TABS CONTENT -->
-            <div class="tabs-content">
-              <!-- TABS CONTENT LOGIN -->
-              <div id="login-tab-content" class="active">
-                <form class="signup-form" action="" method="post">
-                  <input
-                    type="email"
-                    class="input"
-                    id="user_email"
-                    autocomplete="off"
-                    placeholder="Email"
-                  />
-                  <input
-                    type="text"
-                    class="input"
-                    id="user_name"
-                    autocomplete="off"
-                    placeholder="Username"
-                  />
+                            <a class="log-in" routerLink="/login"><span>Login</span></a>
+                        </h3>
+                        <h3 class="signup-tab">
+                            <a class="sign-up active"><span>Sign Up</span></a>
+                        </h3>
+                    </div>
+                    <!-- TABS CONTENT -->
+                    <div class="tabs-content">
+                        <!-- TABS CONTENT LOGIN -->
+                        <div id="login-tab-content" class="active">
+                            <form class="signup-form" #SingUp="ngForm" (ngSubmit)="onSubmit(SingUp)">
+                                <input type="text" class="input" placeholder="name" ngModel name="name" />
+                                <input type="text" class="input" autocomplete="off" placeholder="Useremail" ngModel required name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
+                                <small class="pass" *ngIf="!email?.valid && (email?.dirty || email?.touched)" style="
+                      color: white;
+                      text-shadow: 2px 2px #ff0000;
+                      margin-left: 30%;
+                      font-weight: bolder 100;
+                      font-size: 20px;
+                    ">Invalid Email</small
+                  >
                   <input
                     type="password"
                     class="input"
-                    id="user_pass"
                     autocomplete="off"
                     placeholder="Password"
+                    ngModel
+                    name="password"
+                    #passw="ngModel"
+                    minlength="8"
+                    required
                   />
-                  <input type="submit" class="button" value="Sign Up" />
+                  <small
+                    class="pass"
+                    *ngIf="!passw?.valid && (passw?.dirty || passw?.touched)"
+                    style="
+                      color: white;
+                      text-shadow: 2px 2px #ff0000;
+                      margin-left: 20%;
+                      font-weight: bolder 100;
+                      font-size: 20px;
+
+                      border-radius: 10%;
+                    "
+                    >Invalid password</small
+                  >
+                  <div class="row">
+                    <div>
+                      <select
+                        class="w-full text-2xl rounded-lg"
+                        style="height: 200%"
+                        (change)="getPhone($event)"
+                      >
+                        <option>055</option>
+                        <option>052</option>
+                        <option>053</option>
+                        <option>058</option>
+                        <option>054</option>
+                      </select>
+                    </div>
+
+                    <div className="col">
+                      <div style="height: 80%; width: 150%">
+                        <input
+                          style="height: 250%; width: 100%"
+                          type="tel"
+                          class="input"
+                          placeholder="Phone"
+                          ngModel
+                          name="phone"
+                          class="w-full text-2xl rounded-lg"
+                          #phone="ngModel"
+                          minlength="7"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+                  <small
+                    class="pass"
+                    *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)"
+                    style="
+                      color: white;
+                      text-shadow: 2px 2px #ff0000;
+                      margin-left: 10%;
+                      font-weight: bolder 100;
+                      font-size: 20px;
+                      border-radius: 10%;
+                    "
+                    >Invalid phone number</small
+                  >
+                  <br /><br />
+                  <span style="font-size: 25px">
+                    <input
+                      type="radio"
+                      ngModel
+                      name="image"
+                      value="male"
+                      required
+                    />
+                    Male</span
+                  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <span style="font-size: 25px">
+                    <input
+                      style="border: solid"
+                      type="radio"
+                      ngModel
+                      name="image"
+                      value="female"
+                      required
+                    />
+                    Female</span
+                  >
+                  <br /><br />
+                  <button type="submit" class="button">Submit</button
+                  >&nbsp;&nbsp;&nbsp;
                 </form>
               </div>
-              <!-- TABS CONTENT SIGNUP -->
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-    ></script>
-    <script type="text/javascript" src="script.js"></script>
   </body>
 </html>

@@ -70,24 +70,14 @@
 
             <!-- LOGIN FORM -->
             <div class="user">
-                <!-- ACTIONS
-                    <div class="actions">
-                        <a class="help" href="#signup-tab-content">Sign Up</a><a class="faq" href="#login-tab-content">Login</a>
-                    </div>
-                    -->
                 <div class="form-wrap">
                     <!-- TABS -->
                     <div class="tabs">
                         <h3 class="login-tab">
-                            <a class="log-in active" href="#login-tab-content"><span>Login</span></a
-                >
-              </h3>
-              <h3 class="signup-tab">
-                <a
-                  class="sign-up"
-                  routerLink="/register"
-                  href="#signup-tab-content"
-                  ><span>Sign Up</span></a
+                            <a class="log-in active"><span>Login</span></a>
+                        </h3>
+                        <h3 class="signup-tab">
+                            <a class="sign-up" routerLink="/register"><span>Sign Up</span></a
                 >
               </h3>
             </div>
@@ -95,13 +85,20 @@
             <div class="tabs-content">
               <!-- TABS CONTENT LOGIN -->
               <div id="login-tab-content" class="active">
-                <form class="login-form" action="" method="post">
+                <form
+                  class="login-form"
+                  #login="ngForm"
+                  (ngSubmit)="onSubmit(login)"
+                >
                   <input
                     type="text"
                     class="input"
                     id="user_login"
+                    ngModel
+                    name="email"
                     autocomplete="off"
-                    placeholder="Email or Username"
+                    placeholder="UserEmail"
+                    required
                   />
                   <input
                     type="password"
@@ -109,6 +106,9 @@
                     id="user_pass"
                     autocomplete="off"
                     placeholder="Password"
+                    name="password"
+                    ngModel
+                    required
                   />
                   <input
                     type="checkbox"
@@ -127,23 +127,12 @@
                     </div>
                 </div>
                 <!-- TABS CONTENT SIGNUP -->
-                <div id="signup-tab-content">
-                    <form class="signup-form" action="" method="post">
-                        <input type="email" class="input" id="user_email" autocomplete="off" placeholder="Email" />
-                        <input type="text" class="input" id="user_name" autocomplete="off" placeholder="Username" />
-                        <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password" />
-                        <input type="submit" class="button" value="Sign Up" />
-                    </form>
-                </div>
             </div>
         </div>
         .
     </div>
     </div>
     </div>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>

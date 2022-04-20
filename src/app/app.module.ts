@@ -23,6 +23,7 @@ import { ProductsComponent } from './products/products.component';
 import { CalendarModule } from 'angular-calendar';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { HealthStatementComponent } from './health-statement/health-statement.component';
+import { UserInfoEditDetailsComponent } from './user-info-edit-details/user-info-edit-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { HealthStatementComponent } from './health-statement/health-statement.co
     ProductsComponent,
     ProductDetailsComponent,
     HealthStatementComponent,
+    UserInfoEditDetailsComponent,
   ],
   imports: [
     BrowserModule,

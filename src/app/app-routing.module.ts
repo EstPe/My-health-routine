@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ProductsComponent } from './products/products.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchForAPharmacyComponent } from './search-for-a-pharmacy/search-for-a-pharmacy.component';
+import { UserInfoEditDetailsComponent } from './user-info-edit-details/user-info-edit-details.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 
 const routes: Routes = [

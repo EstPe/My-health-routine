@@ -1028,7 +1028,6 @@ a.button:hover {
 }
 
 #toggle-terms:before {
-    speak: none;
     display: block;
     -webkit-font-smoothing: antialiased;
 }
@@ -1391,7 +1390,7 @@ input {
     left: -10px;
     width: 15px;
     height: 8px;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    /* -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; */
     filter: alpha(opacity=0);
     opacity: 0;
     content: "";
@@ -1422,9 +1421,6 @@ input {
 
 @media only screen and (min-width: 40em) {
     /* GLOBAL TRANSITION */
-    * {
-        /*transition: .25s ease-in-out;*/
-    }
     /* WRAP */
     .wrap {
         position: fixed;
