@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
 import { CalendearComponent } from './calendear/calendear.component';
 import { EnterAMedicineComponent } from './enter-a-medicine/enter-a-medicine.component';
@@ -24,6 +24,30 @@ import { CalendarModule } from 'angular-calendar';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { HealthStatementComponent } from './health-statement/health-statement.component';
 import { UserInfoEditDetailsComponent } from './user-info-edit-details/user-info-edit-details.component';
+import { PymentComponent } from './pyment/pyment.component';
+import { UserService } from './user.service';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { AddPharmacyComponent } from './add-pharmacy/add-pharmacy.component';
+import {
+  ScheduleModule,
+  DayService,
+  MonthService,
+  MonthAgendaService,
+  TimelineViewsService,
+  TimelineMonthService,
+} from '@syncfusion/ej2-angular-schedule';
+import {
+  ChartModule,
+  LineSeriesService,
+  CategoryService,
+} from '@syncfusion/ej2-angular-charts';
+import { StatisticsDiagramsComponent } from './statistics-diagrams/statistics-diagrams.component';
+import { AboutComponent } from './about/about.component';
+import { Ng2SearchPipeModule } from 'node_modules/ng2-search-filter';
+import { OrdersComponent } from './orders/orders.component';
+import { ReminderComponent } from './reminder/reminder.component';
+import { BMIComponent } from './bmi/bmi.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,15 +68,35 @@ import { UserInfoEditDetailsComponent } from './user-info-edit-details/user-info
     ProductDetailsComponent,
     HealthStatementComponent,
     UserInfoEditDetailsComponent,
+    PymentComponent,
+    ForgetPasswordComponent,
+    AddPharmacyComponent,
+    StatisticsDiagramsComponent,
+    AboutComponent,
+    OrdersComponent,
+    ReminderComponent,
+    BMIComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ScheduleModule,
     CalendarModule,
+    ChartModule,
+    Ng2SearchPipeModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: UserService, multi: true },
+    DayService,
+    MonthService,
+    MonthAgendaService,
+    TimelineViewsService,
+    TimelineMonthService,
+    LineSeriesService,
+    CategoryService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

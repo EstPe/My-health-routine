@@ -1,9 +1,4 @@
-/* @import url(https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js); */
-
 @import url(https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css);
-
-/* @import url(https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js); */
-
 body {
     background-color: #f9f9fa;
 }
@@ -18,26 +13,12 @@ body {
 
 .card {
     border-radius: 5px;
-    -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
     border: none;
     margin-bottom: 30px;
 }
 
-.m-r-0 {
-    margin-right: 0px;
-}
-
-.m-l-0 {
-    margin-left: 0px;
-}
-
-.user-card-full .user-profile {
-    border-radius: 5px 0 0 5px;
-}
-
 .bg-c-lite-green {
-    /* background: -webkit-gradient( linear, left top, right top, from(#f29263), to(#ee5a6f)); */
     background: linear-gradient(to right, #ee5a6f, #f29263);
 }
 
@@ -63,12 +44,6 @@ h6 {
 
 .card .card-block p {
     line-height: 25px;
-}
-
-@media only screen and (min-width: 1400px) {
-    p {
-        font-size: 14px;
-    }
 }
 
 .card-block {
@@ -138,22 +113,90 @@ h6 {
     transition: all 0.3s ease-in-out;
 }
 
-body {
-    /* background-image: url(https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGlicmFyeXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80); */
-    background-size: cover;
+
+/* FORM ELEMENTS */
+
+input {
+    font: 16px/26px "Raleway", sans-serif;
+}
+
+.form-wrap form .input {
+    margin: 0 0 0.8em 0;
+    padding: 0.8em 2em 10px 0;
+    width: 100%;
+    display: inline-block;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #5a6374;
+    outline: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    color: black;
 }
 
 
-/*h2,
-p {
-    font-family: Kristen ITC;
-    color: whitesmoke;
+/* for table */
+
+* {
+    font-family: sans-serif;
+    /* Change your font family */
 }
 
-.glowTit {
-    font-size: 40px;
-    color: #fff;
-    animation: glowTit 1s ease-in-out infinite alternate;
-    text-align: center;
-    font-family: Algerian;
-} */
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.background {
+    background-image: url(https://img.freepik.com/free-vector/abstract-blue-geometric-shapes-background_1035-17545.jpg?w=2000);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-bottom: 530px;
+}
+
+p,
+h6,
+td,
+th {
+    font-size: 23px;
+}

@@ -1,68 +1,264 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import {
+  EventSettingsModel,
+  View,
+  MonthService,
+  PopupOpenEventArgs,
+} from '@syncfusion/ej2-angular-schedule';
+import {
+  MedicneUserService,
+  MedicneUser,
+  TakingTime,
+  Times,
+} from '../medicne-user.service';
+import { dataObj } from './dataObj';
+import { format, parseIso } from 'ts-date';
+import { type } from 'os';
 
 @Component({
   selector: 'app-calendear',
   templateUrl: './calendear.component.html',
+  providers: [MonthService],
   styleUrls: ['./calendear.component.css'],
 })
 export class CalendearComponent implements OnInit {
-  constructor() {}
-  myDate: Date = new Date();
-
-  monthNames: string[] = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  constructor(private MedicneUserService: MedicneUserService) {}
+  medUser = new MedicneUser(
+    '',
+    '',
+    '',
+    0,
+    new TakingTime(
+      new Times(new Date(), '', ''),
+      new Times(new Date(), '', ''),
+      new Times(new Date(), '', '')
+    ),
+    0,
+    0,
+    new Date()
+  );
+  take = new TakingTime(
+    new Times(new Date(), '', ''),
+    new Times(new Date(), '', ''),
+    new Times(new Date(), '', '')
+  );
+  objdata: dataObj = new dataObj(
+    0,
+    '',
+    new Date(),
+    new Date(),
+    false,
+    false,
+    ''
+  );
+  openE: boolean = false;
+  openM: boolean = false;
+  openN: boolean = false;
   d: Date = new Date();
-  date: string = '';
+  medForCurrentMonth: boolean = false;
+  data: object[] = [];
+  dataObj: {
+    id: number;
+    eventName: string;
+    startTime: Date;
+    endTime: Date;
+    isAllDay: boolean;
+  };
+  duration: number = 0;
+  sum: number = 0;
   ngOnInit(): void {
-    this.date = this.monthNames[this.d.getMonth()];
+    // this.date = this.monthNames[this.d.getMonth()];
+    this.getMedicneUser();
+    // this.deleteMedUserByCourrentDay();
+  }
+  OpenE() {
+    if (!this.openE) this.openE = true;
+    else this.openE = false;
+  }
+  OpenN() {
+    if (!this.openN) this.openN = true;
+    else this.openN = false;
+  }
+  OpenM() {
+    if (!this.openM) this.openM = true;
+    else this.openM = false;
+  }
+  edit: boolean = false;
+  medicneUser: MedicneUser[] = [];
+  clickOnEdit() {
+    if (!this.edit) this.edit = true;
+    else this.edit = false;
   }
 
-  changeDate() {
-    this.date = this.monthNames[this.d.getMonth() - 1];
-  }
-  goFowardDate() {
-    this.date = this.monthNames[this.d.getMonth()];
-  }
-  // {{ myDate | date: "MMMM yyy" }}
-  index: number[] = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
-  ];
-  month: string[] = [
-    'January ',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December ',
-  ];
-  curentMonth() {
-    for (let i of this.month) {
+  validator(medicneUser: NgForm) {
+    if (medicneUser.value.Evening) {
+      this.take.Evening.time = 'Evening';
+      this.take.Evening.alert = medicneUser.value.alartE;
+    }
+    if (medicneUser.value.Noon) {
+      this.take.Noon.time = 'Noon';
+      this.take.Noon.alert = medicneUser.value.alartN;
+    }
+    if (medicneUser.value.Morning) {
+      this.take.Morning.time = 'Morning';
+      this.take.Morning.alert = medicneUser.value.alartM;
     }
   }
-  month1: string = 'marchd';
-  march: string = 'march';
-  march1: string = 'marchd';
-  ester: string = 'estedr';
-  march12: string = 'ma6rchd';
-  ester12: string = 'estedr';
+  // deleteMedUserByCourrentDay() {
+  //   this.MedicneUserService.deleteMedicneUserByCurrentDay().subscribe({
+  //     next: (v) => {
+  //       console.log(v);
+  //     },
+  //     error: (e) => {
+  //       console.log(e);
+  //     },
+  //   });
+  // }
+  onSave(medicneUser: NgForm) {
+    this.validator(medicneUser);
+    console.log(medicneUser.value);
+    this.medUser = medicneUser.value;
+    this.medUser.TakingTime = this.take;
+    this.MedicneUserService.updateMedicneUser(this.medUser).subscribe({
+      next: (v) => {
+        console.log(v);
+        alert('changes saved');
+        window.location.reload();
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
+  delete(med: MedicneUser) {
+    this.MedicneUserService.deleteMedicneUser(med).subscribe({
+      next: (v) => {
+        alert('med deleted');
+        window.location.reload();
+      },
+      error: (e) => {},
+    });
+  }
+  day: string = '';
+  getMedicneUser() {
+    this.MedicneUserService.getMedicneUser().subscribe({
+      next: (v) => {
+        for (let i = 0; i < v.length; i++) {
+          if (
+            Number(JSON.stringify(v[i].StartDay).substring(6, 8)) ==
+            this.d.getMonth() + 1
+          ) {
+            v[i].StartDay = format(new Date(v[i].StartDay), 'YYYY-MM-DD');
+            this.medicneUser.push(v[i]);
+          }
+
+          v[i].StartDay = format(new Date(v[i].StartDay), 'YYYY-MM-DD');
+
+          this.medForCurrentMonth = true;
+        }
+        this.listMedOfUser();
+        this.duration = Number(
+          JSON.stringify(this.medicneUser[0].StartDay).substring(10, 11)
+        );
+      },
+      error: (e) => {},
+    });
+  }
+
+  listMedOfUser() {
+    this.d.getDate();
+    this.sum =
+      this.medicneUser[0].AmountOfPills * this.medicneUser[0].CapletsByHour;
+    let j = 0;
+    for (let i = 0; i < this.medicneUser.length; i++) {
+      if (this.medicneUser[i].TakingTime.Morning.time == 'Morning') {
+        this.objdata = this.objdata.takingTimes(
+          this.medicneUser[i],
+          this.medicneUser[i].TakingTime.Morning.approvDate,
+          this.medicneUser[i].TakingTime.Morning.alert,
+          j++,
+          'Morning'
+        );
+        this.data.push(this.objdata);
+        if (
+          this.medicneUser[i].TakingTime.Morning.approvDate !=
+          this.medicneUser[i].StartDay
+        ) {
+          console.log('here');
+          this.objdata = this.objdata.afterApproveOrNot(
+            this.medicneUser[i],
+            this.medicneUser[i].TakingTime.Morning.approvDate,
+            this.medicneUser[i].TakingTime.Morning.alert,
+            j++,
+            'Morning'
+          );
+          this.data.push(this.objdata);
+        }
+      }
+
+      if (this.medicneUser[i].TakingTime.Noon.time == 'Noon') {
+        this.objdata = this.objdata.takingTimes(
+          this.medicneUser[i],
+          this.medicneUser[i].TakingTime.Noon.approvDate,
+          this.medicneUser[i].TakingTime.Noon.alert,
+          j++,
+          'Noon'
+        );
+        this.data.push(this.objdata);
+        if (
+          this.medicneUser[i].TakingTime.Noon.approvDate !=
+          this.medicneUser[i].StartDay
+        ) {
+          console.log(this.medicneUser[i]);
+          this.objdata = this.objdata.afterApproveOrNot(
+            this.medicneUser[i],
+            this.medicneUser[i].TakingTime.Noon.approvDate,
+            this.medicneUser[i].TakingTime.Noon.alert,
+            j++,
+            'Noon'
+          );
+          this.data.push(this.objdata);
+        }
+      }
+      if (this.medicneUser[i].TakingTime.Evening.time == 'Evening') {
+        this.objdata = this.objdata.takingTimes(
+          this.medicneUser[i],
+          this.medicneUser[i].TakingTime.Evening.approvDate,
+          this.medicneUser[i].TakingTime.Evening.alert,
+          j++,
+          'Evening'
+        );
+        this.data.push(this.objdata);
+        if (
+          this.medicneUser[i].TakingTime.Evening.approvDate !=
+          this.medicneUser[i].StartDay
+        ) {
+          this.objdata = this.objdata.afterApproveOrNot(
+            this.medicneUser[i],
+            this.medicneUser[i].TakingTime.Evening.approvDate,
+            this.medicneUser[i].TakingTime.Evening.alert,
+            j++,
+            'Evening'
+          );
+          this.data.push(this.objdata);
+        }
+      }
+    }
+  }
+
+  public setView: View = 'Month';
+  public selectedDate: Date = new Date();
+  public eventSettings: EventSettingsModel = {
+    dataSource: this.data,
+    fields: {
+      id: 'id',
+      subject: { name: 'eventName' },
+      isAllDay: { name: 'isAllDay' },
+      startTime: { name: 'startTime' },
+      endTime: { name: 'endTime' },
+    },
+  };
+
+  myDate: Date = new Date();
 }

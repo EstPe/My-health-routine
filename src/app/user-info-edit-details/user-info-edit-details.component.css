@@ -1,159 +1,106 @@
-/* @import url(https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js); */
-
-@import url(https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css);
-
-/* @import url(https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js); */
-
 body {
-    background-color: #f9f9fa;
-}
-
-.padding {
-    padding: 3rem !important;
-}
-
-.user-card-full {
-    overflow: hidden;
+    background: #eee;
 }
 
 .card {
-    border-radius: 5px;
-    -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
-    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
     border: none;
-    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-.m-r-0 {
-    margin-right: 0px;
+.card:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #e1bee7;
+    transform: scaleY(1);
+    transition: all 0.5s;
+    transform-origin: bottom;
 }
 
-.m-l-0 {
-    margin-left: 0px;
+.card:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #8e24aa;
+    transform: scaleY(0);
+    transition: all 0.5s;
+    transform-origin: bottom;
 }
 
-.user-card-full .user-profile {
-    border-radius: 5px 0 0 5px;
+.card:hover::after {
+    transform: scaleY(1);
 }
 
-.bg-c-lite-green {
-    /* background: -webkit-gradient( linear, left top, right top, from(#f29263), to(#ee5a6f)); */
-    background: linear-gradient(to right, #ee5a6f, #f29263);
-}
-
-.user-profile {
-    padding: 20px 0;
-}
-
-.card-block {
-    padding: 1.25rem;
-}
-
-.m-b-25 {
-    margin-bottom: 25px;
-}
-
-.img-radius {
-    border-radius: 5px;
-}
-
-h6 {
-    font-size: 14px;
-}
-
-.card .card-block p {
-    line-height: 25px;
-}
-
-@media only screen and (min-width: 1400px) {
-    p {
-        font-size: 14px;
-    }
-}
-
-.card-block {
-    padding: 1.25rem;
-}
-
-.b-b-default {
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.m-b-20 {
-    margin-bottom: 20px;
-}
-
-.p-b-5 {
-    padding-bottom: 5px !important;
-}
-
-.card .card-block p {
-    line-height: 25px;
-}
-
-.m-b-10 {
-    margin-bottom: 10px;
-}
-
-.text-muted {
-    color: #919aa3 !important;
-}
-
-.b-b-default {
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.f-w-600 {
-    font-weight: 600;
-}
-
-.m-b-20 {
-    margin-bottom: 20px;
-}
-
-.m-t-40 {
-    margin-top: 20px;
-}
-
-.p-b-5 {
-    padding-bottom: 5px !important;
-}
-
-.m-b-10 {
-    margin-bottom: 10px;
-}
-
-.m-t-40 {
-    margin-top: 20px;
-}
-
-.user-card-full .social-link li {
-    display: inline-block;
-}
-
-.user-card-full .social-link li a {
+.fonts {
     font-size: 20px;
-    margin: 0 10px 0 0;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
 }
 
-body {
-    /* background-image: url(https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGlicmFyeXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80); */
-    background-size: cover;
+.social-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
 }
 
-
-/*h2,
-p {
-    font-family: Kristen ITC;
-    color: whitesmoke;
+.social-list li {
+    padding: 10px;
+    color: #8e24aa;
+    font-size: 19px;
 }
 
-.glowTit {
-    font-size: 40px;
+.buttons button {
+    border: 1px solid #8e24aa !important;
     color: #fff;
-    animation: glowTit 1s ease-in-out infinite alternate;
-    text-align: center;
-    font-family: Algerian;
-} */
+    height: 40px;
+    background-color: #8e24aa;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 50%;
+}
+
+.form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 20px;
+    color: #fff;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #9b9b9b;
+}
+
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}

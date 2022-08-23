@@ -1,23 +1,30 @@
-<br /><br /><br /><br /><br /><br />
-<html>
 <app-navbar></app-navbar>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Client Register</title>
-    <!-- <link rel="stylesheet" href="Reg.css" /> -->
-</head>
 
 <body>
     <div class="header">
         <h2>Enter Your Medicne</h2>
     </div>
 
-    <form method="post" action="phpedit.php">
+    <form #medicneUser="ngForm" (ngSubmit)="onSubmit(medicneUser)">
         <div class="input-group">
             <label>Medicne Name:&nbsp;&nbsp;</label>
 
-            <input type="text" name="Drink_stock" style="width: 20%" placeholder="Name" />
+            <div class="search-hero">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a Medicne" style="width: 20%" />
+            </div>
+            <!-- <input type="text" ngModel name="MedicneName" style="width: 20%" placeholder="Name" /> -->
+            <br />
+            <div class="dropdown-container">
+                <select name="cars" id="cars" (change)="getCategory($event)">
+          <option
+            *ngFor="let med of medicnes | filter: searchText"
+            value=" {{ med.nameMed }} "
+            style="width: 30%"
+          >
+            {{ med.nameMed }}
+          </option>
+        </select>
+            </div>
         </div>
         <br />
 
@@ -27,7 +34,7 @@
             </div>
             <label>Quantity(milligram):</label>&nbsp;&nbsp;
 
-            <input type="number" id="quantity" name="quantity" min="0" max="100" step="5" value="30" style="width: 10%" required />
+            <input type="number" id="MgQuantity" name="MgQuantity" min="0" max="100" step="5" value="30" style="width: 10%" required ngModel />
         </div>
         <br />
         <div class="input-group">
@@ -36,88 +43,122 @@
             </div>
             <label>Taking Time:</label>
             <!-- <div style="border: solid"> -->
-        </div>
 
+            <!-- open clock morning -->
+            <label class="chat-btn" for="check" style="margin-right: 85%" (click)="OpenM()">
+        <input
+          type="checkbox"
+          ngModel
+          name="Morning"
+          value="Morning"
+          style="width: 15%"
+        />&nbsp;&nbsp;Morning</label
+      >
+      <ng-container *ngIf="openM">
         <div>
-            <label style="font-size: 20px">
-          <input type="radio" name="Price" />&nbsp;&nbsp; Morning</label
-        ><br /><br />
-        <label style="font-size: 20px">
-          <input type="radio" name="Price" />&nbsp;&nbsp;Noon</label
-        ><br /><br />
-        <label style="font-size: 20px">
-          <input type="radio" name="Price" />&nbsp;&nbsp;Evening</label
-        ><br /><br />
-        <!-- </div> -->
-      </div>
+          <input
+            ngModel
+            type="time"
+            name="alartM"
+            min="05:00"
+            max="12:00"
+            style="width: 20%"
+          />&nbsp;&nbsp;
 
-      <div class="input-group">
-        <label>Amount of pills (per take): </label>&nbsp;&nbsp;
+          <span class="validity"></span>
+          <div>
+            <label for="appt-time" style="font-size: 20px"
+              >Morning (05:00 to 12:00):
+            </label>
+        </div>
+        </div>
+        </ng-container>
+        <!-- clock noon -->
+        <label class="chat-btn" for="check" style="margin-right: 88%" (click)="OpenN()">
+        <input
+          type="checkbox"
+          ngModel
+          name="Noon"
+          value="Noon"
+          style="width: 18%"
+        />&nbsp;&nbsp;Noon</label
+      >
+      <ng-container *ngIf="openN">
+        <div>
+          <input
+            ngModel
+            type="time"
+            name="alartN"
+            min="13:00"
+            max="18:00"
+            style="width: 20%"
+          />&nbsp;&nbsp;
+
+          <span class="validity"></span>
+          <div>
+            <label for="appt-time" style="font-size: 20px"
+              >Noon (13:00 to 18:00):
+            </label>
+        </div>
+        </div>
+        </ng-container>
+
+        <!-- open clock Evening-->
+        <label class="chat-btn" for="check" style="margin-right: 85%" (click)="OpenE()">
+        <input
+          type="checkbox"
+          ngModel
+          name="Evening"
+          value="Evening"
+          style="width: 15%"
+        />&nbsp;&nbsp;Evening</label
+      >
+      <ng-container *ngIf="openE">
+        <div>
+          <input
+            ngModel
+            type="time"
+            name="alartE"
+            style="width: 20%"
+            min="19:00"
+            max="00:00"
+          />&nbsp;&nbsp;
+
+          <span class="validity"></span>
+          <div>
+            <label for="appt-time" style="font-size: 20px"
+              >Evening (19:00 to 00:00):
+            </label>
+        </div>
+        </div>
+        </ng-container>
+        </div>
+        <div class="input-group">
+            <label>Amount of pills (for one day): </label>&nbsp;&nbsp;
             <div class="help-tip" style="margin-right: 46%; margin-top: -2%">
                 <p>Twice a day 2 pills in one take</p>
             </div>
             <br />
-            <input type="number" id="quantity" name="quantity" min="0" max="100" step="1" value="0" style="width: 10%" required />
+            <input type="number" ngModel id="AmountOfPills" name="AmountOfPills" min="0" max="100" step="1" value="0" style="width: 10%" required />
         </div>
         <br />
+
         <div class="input-group">
-            <label>Caplets by hour: &nbsp;&nbsp;</label>
-            <div class="help-tip" style="margin-right: 60%; margin-top: -2%">
-                <p>Between taking a pill should wait 4 hours</p>
+            <label>For period of time: &nbsp;&nbsp;</label>
+            <input type="number" ngModel id="CapletsByHour" name="CapletsByHour" min="0" max="100" step="1" value="0" style="width: 10%" required />
+            <div class="help-tip" style="margin-right: 50%; margin-top: -2%">
+                <p>treatment for 2 week (write 14 days)</p>
             </div>
-            <input type="number" id="quantity" name="quantity" min="0" max="100" step="1" value="0" style="width: 10%" required />
+        </div>
+        <div class="input-group">
+            <label>Start day time: &nbsp;&nbsp;</label>
+            <input type="date" ngModel id="StartDay" name="StartDay" style="width: 20%" required />
         </div>
 
         <div class="input-group">
-            <button type="submit" class="btn" name="register_btn">Submit</button>
+            <button type="submit" class="btn" name="register_btn" style="font-size: 20px">
+        Submit
+      </button>
         </div>
     </form>
 </body>
-
-</html>
-<!-- <body>
-    <form style="border: solid; width: 50%; margin-left: 20%">
-      
-        <div class="row mb-4">
-            <div class="col">
-                <div class="form-outline">
-                    <label class="form-label" for="form6Example1">Medicne Name?</label>
-                    <input type="text" id="form6Example1" class="form-control" />
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-outline">
-                    <label class="form-label" for="form6Example2">Quantity(milligram)</label
-          >
-          <input type="text" id="form6Example2" class="form-control" />
-        </div>
-      </div>
-    </div>
-
-    <div class="form-outline mb-4">
-      <input type="text" id="form6Example3" class="form-control" />
-      <label class="form-label" for="form6Example3">Company name</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <input type="text" id="form6Example4" class="form-control" />
-                    <label class="form-label" for="form6Example4">Address</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <input type="email" id="form6Example5" class="form-control" />
-                    <label class="form-label" for="form6Example5">Email</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <input type="number" id="form6Example6" class="form-control" />
-                    <label class="form-label" for="form6Example6">Phone</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-                    <label class="form-label" for="form6Example7">Additional information</label
-      >
-    </div>
-  </form>
-</body> -->
