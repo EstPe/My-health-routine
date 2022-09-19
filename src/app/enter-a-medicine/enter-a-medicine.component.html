@@ -10,18 +10,21 @@
             <label>Medicne Name:&nbsp;&nbsp;</label>
 
             <div class="search-hero">
-                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a Medicne" style="width: 20%" />
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a Medicne" style="width: 40%" />
             </div>
             <!-- <input type="text" ngModel name="MedicneName" style="width: 20%" placeholder="Name" /> -->
             <br />
+            <div *ngIf="managerAccess > 1">
+                <app-medicines-database></app-medicines-database>
+            </div>
             <div class="dropdown-container">
                 <select name="cars" id="cars" (change)="getCategory($event)">
           <option
             *ngFor="let med of medicnes | filter: searchText"
-            value=" {{ med.nameMed }} "
+            value="{{ med.nameMed }}"
             style="width: 30%"
           >
-            {{ med.nameMed }}
+            {{ med.nameMed }} {{ med.size }} MG
           </option>
         </select>
             </div>
@@ -145,7 +148,7 @@
 
         <div class="input-group">
             <label>For period of time: &nbsp;&nbsp;</label>
-            <input type="number" ngModel id="CapletsByHour" name="CapletsByHour" min="0" max="100" step="1" value="0" style="width: 10%" required />
+            <input type="number" ngModel id="ForHowLong" name="ForHowLong" min="0" max="100" step="1" value="0" style="width: 10%" required />
             <div class="help-tip" style="margin-right: 50%; margin-top: -2%">
                 <p>treatment for 2 week (write 14 days)</p>
             </div>

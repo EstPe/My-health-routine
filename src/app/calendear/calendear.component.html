@@ -36,37 +36,48 @@
               src="https://img.icons8.com/ios-filled/50/000000/edit--v1.png"
             />
           </button>
+                    <!-- value="{{ d.getFullYear() }}-0{{ d.getMonth() + 1 }}" -->
+                    <!-- [(ngModel)]="d" -->
+                    <form #date="ngForm" (ngSubmit)="getMedicneUsers(date)">
+                        <input type="month" style="width: 25%" name="monthYear" ngModel />
+                        <button type="submit" class="btn" name="register_btn" style="font-size: 20px; border: solid black; margin-left: 5%">
+              Submit
+            </button>
+                    </form>
+                    <!-- (click)="getMedicneUsers(d)" -->
 
                     <div class="mr-5" *ngFor="let med of medicneUser">
                         <!-- <p>ddddd</p>
                     </div> -->
-                        <ng-container *ngIf="!edit && medForCurrentMonth">
-                            <p class="light-text suggestion">
-                                <span> Medicne Name </span>: {{ med.MedicneName }}
-                            </p>
-                            <p class="light-text suggestion">
-                                <span> Taking Time </span>: {{ med.TakingTime.Morning.time }} {{ med.TakingTime.Noon.time }} {{ med.TakingTime.Evening.time }}
-                            </p>
-                            <p class="light-text suggestion">
-                                <span> Amount Of Pills </span>: {{ med.AmountOfPills }}
-                            </p>
-                            <p class="light-text suggestion">
-                                <span> For </span>: {{ med.CapletsByHour + duration }} days
-                            </p>
-                            <p class="light-text suggestion">
-                                <span> Mg Quantity </span>: {{ med.MgQuantity }}
-                            </p>
-                            <p class="light-text suggestion">
-                                <span> Start Day </span>: {{ med.StartDay }}
-                            </p>
-                            <p class="light-text suggestion">
-                                <span>Total Amount Of Pills: {{ this.sum }}</span>
-                            </p>
-                            <p class="light-text suggestion">
-                                <span>Total days left: {{ med.CapletsByHour }}</span>
-                            </p>
-                            <div class="line my-5"></div>
-                        </ng-container>
+                        <!-- <ng-container *ngIf="!edit && medForCurrentMonth"> -->
+                        <p class="light-text suggestion">
+                            <span> Medicne Name </span>: {{ med.MedicneName }}
+                        </p>
+                        <p class="light-text suggestion">
+                            <span> Taking Time </span>: {{ med.TakingTime.Morning.time }} {{ med.TakingTime.Noon.time }} {{ med.TakingTime.Evening.time }}
+                        </p>
+                        <p class="light-text suggestion">
+                            <span> Amount Of Pills </span>: {{ med.AmountOfPills }}
+                        </p>
+                        <p class="light-text suggestion">
+                            <span> For </span>: {{ med.ForHowLong + duration }} days
+                        </p>
+                        <p class="light-text suggestion">
+                            <span> Mg Quantity </span>: {{ med.MgQuantity }}
+                        </p>
+                        <p class="light-text suggestion">
+                            <span> Start Day </span>: {{ med.StartDay }}
+                        </p>
+                        <p class="light-text suggestion">
+                            <span>Total Amount Of Pills:
+                {{ med.AmountOfPills * med.ForHowLong }}</span
+              >
+            </p>
+            <p class="light-text suggestion">
+              <span>Total days left: {{ med.ForHowLong }}</span>
+                        </p>
+                        <div class="line my-5"></div>
+                        <!-- </ng-container> -->
 
                         <!-- edit med -->
                         <img (click)="delete(med)" class="img" style="width: 5%; height: 10%; margin-left: 90%" src="https://img.icons8.com/office/30/000000/cancel.png " *ngIf="edit" />
@@ -186,7 +197,7 @@
     </p>
     <p class="light-text suggestion">
         <span> Caplets By Hour </span>:
-        <input type="number" ngModel id="CapletsByHour" name="CapletsByHour" min="0" max="100" step="1" value="0" style="width: 10%" required placeholder="{{ med.CapletsByHour }} " />
+        <input type="number" ngModel id="ForHowLong" name="ForHowLong" min="0" max="100" step="1" value="0" style="width: 10%" required placeholder="{{ med.ForHowLong }} " />
     </p>
     <p class="light-text suggestion">
         <span> Mg Quantity </span>:

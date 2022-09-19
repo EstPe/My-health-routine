@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { threadId } from 'worker_threads';
 
 @Injectable({
   providedIn: 'root',
@@ -12,21 +11,20 @@ export class MedicneUserService {
   baseURL: string = 'http://localhost:8000/api/MedicneUser/';
   headers = { 'content-type': 'application/json' };
   constructor(private http: HttpClient, private router: Router) {}
-  addMedicneUser(user: Object): Observable<any> {
-    let body = JSON.stringify(user);
+  addMedicneUser(med: Object): Observable<any> {
+    let body = JSON.stringify(med);
     return this.http.post(this.baseURL + 'addMedicneUser', body, {
       headers: this.headers,
     });
   }
-  getMedicneUser(): Observable<any> {
-    return this.http.get(this.baseURL + 'getMedicneUser');
+
+  getMedicneUser(monthYear: Date): Observable<any> {
+    console.log(monthYear);
+    return this.http.get(this.baseURL + 'getMedicneUser/' + monthYear);
   }
-  getMedicnes(): Observable<any> {
-    return this.http.get(this.baseURL + 'getMedicnes');
-  }
+
   updateMedicneUser(medUser: MedicneUser): Observable<any> {
     let body = JSON.stringify(medUser);
-
     return this.http.put(this.baseURL + 'updateMed/' + medUser._id, body, {
       headers: this.headers,
     });
@@ -36,6 +34,7 @@ export class MedicneUserService {
       this.baseURL + 'deleteMedUser/' + medUser.MedicneName
     );
   }
+
   // deleteMedicneUserByCurrentDay(): Observable<any> {
   //   return this.http.delete(this.baseURL + 'deleteMedUserByCourrentDay');
   // }
@@ -45,9 +44,10 @@ export class MedicneUserService {
   approve(): Observable<any> {
     return this.http.get(this.baseURL + 'approved');
   }
-  notApproveIgnor(): Observable<any> {
-    return this.http.get(this.baseURL + 'notApprovedIgnor');
-  }
+
+  // notApproveIgnor(): Observable<any> {
+  //   return this.http.get(this.baseURL + 'notApprovedIgnor');
+  // }
 }
 
 export class Times {
@@ -77,7 +77,7 @@ export class MedicneUser {
   MgQuantity: number;
   TakingTime: TakingTime;
   AmountOfPills: number;
-  CapletsByHour: number;
+  ForHowLong: number;
   StartDay: Date;
   constructor(
     _id: string,
@@ -86,7 +86,7 @@ export class MedicneUser {
     MgQuantity: number,
     TakingTime: TakingTime,
     AmountOfPills: number,
-    CapletsByHour: number,
+    ForHowLong: number,
     StartDay: Date
   ) {
     this._id = this._id;
@@ -95,7 +95,7 @@ export class MedicneUser {
     this.MgQuantity = MgQuantity;
     this.TakingTime = TakingTime;
     this.AmountOfPills = AmountOfPills;
-    this.CapletsByHour = CapletsByHour;
+    this.ForHowLong = ForHowLong;
     this.StartDay = StartDay;
   }
 }

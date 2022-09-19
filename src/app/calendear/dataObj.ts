@@ -49,7 +49,7 @@ export class dataObj {
     dataobj.endTime = new Date(
       day.getFullYear(),
       day.getMonth(),
-      day.getDate() + medicneUser.CapletsByHour - 1,
+      day.getDate() + medicneUser.ForHowLong - 1,
       Number(timeHour) + 1,
       Number(timeMinutes)
     );
@@ -68,6 +68,7 @@ export class dataObj {
     let timeHour, timeMinutes;
     let day = new Date(medicneUser.StartDay);
     let endDay = new Date(date);
+
     timeHour = alart.substring(0, 2);
     timeMinutes = alart.substring(3, 5);
     dataobj.id = i;

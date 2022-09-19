@@ -47,6 +47,7 @@ import { Ng2SearchPipeModule } from 'node_modules/ng2-search-filter';
 import { OrdersComponent } from './orders/orders.component';
 import { ReminderComponent } from './reminder/reminder.component';
 import { BMIComponent } from './bmi/bmi.component';
+import { MedicinesDatabaseComponent } from './medicines-database/medicines-database.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { BMIComponent } from './bmi/bmi.component';
     OrdersComponent,
     ReminderComponent,
     BMIComponent,
+    MedicinesDatabaseComponent,
   ],
   imports: [
     BrowserModule,

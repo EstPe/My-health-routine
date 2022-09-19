@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DateTime } from '@syncfusion/ej2-angular-charts';
+import { Router } from '@angular/router';
 import {
   MedicneUserService,
   MedicneUser,
   TakingTime,
   Times,
 } from '../medicne-user.service';
+import { MedDatabaseService } from '../med-database.service';
 
 @Component({
   selector: 'app-enter-a-medicine',
@@ -19,15 +21,23 @@ export class EnterAMedicineComponent implements OnInit {
     new Times(new Date(), '', ''),
     new Times(new Date(), '', '')
   );
+  public flag: boolean = false;
 
-  constructor(private MedicneUserService: MedicneUserService) {}
+  constructor(
+    private MedicneUserService: MedicneUserService,
+    private router: Router,
+    private MedicneService: MedDatabaseService
+  ) {}
+  managerAccess: number;
 
   ngOnInit(): void {
-    this.getMedicneUser();
+    // this.getMedicneUser();
     this.getMedicnes();
+    this.managerAccess = JSON.parse(
+      localStorage.getItem('access') || null || ' '
+    ).access;
   }
   searchText: any;
-
   medicneUser: MedicneUser[] = [];
   medicnes: any[] = [];
   usermedicne: {
@@ -35,12 +45,11 @@ export class EnterAMedicineComponent implements OnInit {
     MgQuantity: number;
     TakingTime: TakingTime;
     AmountOfPills: number;
-    CapletsByHour: number;
+    ForHowLong: number;
     StartDay: Date;
   };
   userAccess: string = JSON.parse(localStorage.getItem('access') || null || ' ')
     .userId;
-  flag: boolean = false;
   openE: boolean = false;
   openM: boolean = false;
   openN: boolean = false;
@@ -81,12 +90,38 @@ export class EnterAMedicineComponent implements OnInit {
       MgQuantity: medicneUser.value.MgQuantity,
       TakingTime: this.take,
       AmountOfPills: medicneUser.value.AmountOfPills,
-      CapletsByHour: medicneUser.value.CapletsByHour,
+      ForHowLong: medicneUser.value.ForHowLong,
       StartDay: medicneUser.value.StartDay,
     };
+    // let flag = false;
+    // console.log(this.overTake(this.usermedicne));
+    this.MedicneService.overTake(this.usermedicne).subscribe({
+      next: (v) => {
+        console.log(v);
+        let c = confirm(
+          'from our data we notaice over take in amount of pills'
+        );
+        if (c) {
+          console.log('work');
+          this.overTake(this.medicneUser);
+          return;
+        } else if (!c) {
+          console.log('cancel');
+        } else {
+          this.overTake(this.medicneUser);
+        }
+      },
+      error: (e) => {
+        console.log(e);
+        this.overTake(this.medicneUser);
+      },
+    });
+  }
+  overTake(medicneUser: Object) {
     this.MedicneUserService.addMedicneUser(this.usermedicne).subscribe({
       next: (v) => {
         alert('enter medican to calendar has been successful');
+        this.router.navigateByUrl('/Calendear');
       },
       error: (e) => {
         console.log(e);
@@ -95,16 +130,16 @@ export class EnterAMedicineComponent implements OnInit {
     });
   }
 
-  getMedicneUser() {
-    this.MedicneUserService.getMedicneUser().subscribe({
-      next: (v) => {
-        this.medicneUser = v;
-      },
-      error: (e) => {},
-    });
-  }
+  // getMedicneUser() {
+  //   this.MedicneUserService.getMedicneUser().subscribe({
+  //     next: (v) => {
+  //       this.medicneUser = v;
+  //     },
+  //     error: (e) => {},
+  //   });
+  // }
   getMedicnes() {
-    this.MedicneUserService.getMedicnes().subscribe({
+    this.MedicneService.getMedicnes().subscribe({
       next: (v) => {
         this.medicnes = v;
       },

@@ -27,12 +27,14 @@ export class ProductDetailsComponent implements OnInit {
   commands: any[] = [];
   quantity: number = 1;
   command: string;
+  orders: Product[] = [];
   ngOnInit(): void {
     this.SerialNumber = this.acRout.snapshot.params['SerialNumber'];
     this.getProduct();
     this.access = JSON.parse(
       localStorage.getItem('access') || null || ' '
     ).access;
+    this.getOrderUser();
   }
   getProduct() {
     this.productService.getProduct(this.SerialNumber).subscribe({
@@ -116,6 +118,7 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.addCommand(commandUser).subscribe({
       next: (v) => {
         console.log(v);
+        window.location.reload();
       },
       error: (e) => {
         console.log(e);
@@ -131,6 +134,17 @@ export class ProductDetailsComponent implements OnInit {
         console.log(this.commands);
       },
       error: (e) => {},
+    });
+  }
+  getOrderUser() {
+    this.productService.userProductThatUserBuy().subscribe({
+      next: (v) => {
+        console.log(v);
+        this.orders = v;
+      },
+      error: (e) => {
+        console.log(e);
+      },
     });
   }
 }

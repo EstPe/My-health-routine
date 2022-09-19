@@ -66,11 +66,8 @@ export class CalendearComponent implements OnInit {
     isAllDay: boolean;
   };
   duration: number = 0;
-  sum: number = 0;
   ngOnInit(): void {
-    // this.date = this.monthNames[this.d.getMonth()];
-    this.getMedicneUser();
-    // this.deleteMedUserByCourrentDay();
+    this.getMedicneUsers(new Date());
   }
   OpenE() {
     if (!this.openE) this.openE = true;
@@ -141,21 +138,21 @@ export class CalendearComponent implements OnInit {
     });
   }
   day: string = '';
-  getMedicneUser() {
-    this.MedicneUserService.getMedicneUser().subscribe({
+  monthYear: any;
+  public selectedDate: Date = new Date();
+  getMedicneUsers(newMonthYear: any) {
+    if (newMonthYear.value != undefined)
+      this.monthYear = newMonthYear.value.monthYear;
+    else this.monthYear = new Date();
+    this.selectedDate = new Date(this.monthYear);
+    console.log(new Date(this.monthYear).getMonth() + 1);
+    this.MedicneUserService.getMedicneUser(this.monthYear).subscribe({
       next: (v) => {
         for (let i = 0; i < v.length; i++) {
-          if (
-            Number(JSON.stringify(v[i].StartDay).substring(6, 8)) ==
-            this.d.getMonth() + 1
-          ) {
-            v[i].StartDay = format(new Date(v[i].StartDay), 'YYYY-MM-DD');
-            this.medicneUser.push(v[i]);
-          }
-
+          v[i];
           v[i].StartDay = format(new Date(v[i].StartDay), 'YYYY-MM-DD');
-
-          this.medForCurrentMonth = true;
+          this.medicneUser.push(v[i]);
+          // this.medForCurrentMonth = true;
         }
         this.listMedOfUser();
         this.duration = Number(
@@ -167,9 +164,7 @@ export class CalendearComponent implements OnInit {
   }
 
   listMedOfUser() {
-    this.d.getDate();
-    this.sum =
-      this.medicneUser[0].AmountOfPills * this.medicneUser[0].CapletsByHour;
+    // this.d.getDate();
     let j = 0;
     for (let i = 0; i < this.medicneUser.length; i++) {
       if (this.medicneUser[i].TakingTime.Morning.time == 'Morning') {
@@ -185,7 +180,6 @@ export class CalendearComponent implements OnInit {
           this.medicneUser[i].TakingTime.Morning.approvDate !=
           this.medicneUser[i].StartDay
         ) {
-          console.log('here');
           this.objdata = this.objdata.afterApproveOrNot(
             this.medicneUser[i],
             this.medicneUser[i].TakingTime.Morning.approvDate,
@@ -210,7 +204,6 @@ export class CalendearComponent implements OnInit {
           this.medicneUser[i].TakingTime.Noon.approvDate !=
           this.medicneUser[i].StartDay
         ) {
-          console.log(this.medicneUser[i]);
           this.objdata = this.objdata.afterApproveOrNot(
             this.medicneUser[i],
             this.medicneUser[i].TakingTime.Noon.approvDate,
@@ -248,7 +241,6 @@ export class CalendearComponent implements OnInit {
   }
 
   public setView: View = 'Month';
-  public selectedDate: Date = new Date();
   public eventSettings: EventSettingsModel = {
     dataSource: this.data,
     fields: {

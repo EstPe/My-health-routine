@@ -20,10 +20,10 @@ export class ReminderComponent implements OnInit {
       },
     });
   }
-  notApproveIgnor() {
-    this.medService.notApproveIgnor().subscribe({
-      next: (v) => {},
-      error: (e) => {},
-    });
-  }
+  // notApproveIgnor() {
+  //   this.medService.notApproveIgnor().subscribe({
+  //     next: (v) => {},
+  //     error: (e) => {},
+  //   });
+  // }
 }
