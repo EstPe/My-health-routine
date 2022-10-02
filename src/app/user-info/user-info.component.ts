@@ -9,7 +9,7 @@ import { User, UserService, AccessUser } from '../user.service';
 })
 export class UserInfoComponent implements OnInit {
   constructor(private UserServic: UserService, private router: Router) {}
-  userInfo = new User('', '', '', 0, '', ' ', 0, '', 0);
+  userInfo = new User('', '', '', 0, '', ' ', 0, '', 0, 0, 0, 0);
   allUsers: User[] = [];
   accessUser: string = '';
   edit: boolean = false;

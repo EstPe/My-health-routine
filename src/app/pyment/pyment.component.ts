@@ -11,7 +11,7 @@ import { UserService, User } from '../user.service';
 export class PymentComponent implements OnInit {
   nameOfCategory: string = 'Personal';
   cart: Cart[] = [];
-  user = new User('', '', '', 0, '', '', 0, '', 0);
+  user = new User('', '', '', 0, '', '', 0, '', 0, 0, 0, 0);
   constructor(
     private CartService: CartService,
     private UserServic: UserService
@@ -27,7 +27,10 @@ export class PymentComponent implements OnInit {
 
   checkout() {
     this.CartService.checkOut().subscribe({
-      next: (v) => {},
+      next: (v) => {
+        let len = 0;
+        localStorage.setItem('quantity', JSON.stringify(len));
+      },
       error: (e) => {},
     });
   }

@@ -3,21 +3,20 @@ import { json } from 'express';
 import { ProductsService, Product } from '../products.service';
 import { jsPDF } from 'jspdf';
 import { OrderService } from '../order.service';
+import { format } from 'ts-date';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css'],
 })
 export class OrdersComponent implements OnInit {
-  constructor(
-    private productServer: ProductsService,
-    private orderService: OrderService
-  ) {}
+  constructor(private orderService: OrderService) {}
   @ViewChild('content', { static: false }) el?: ElementRef;
   access: number;
+  date: any;
   ngOnInit(): void {
-    this.getOrderUser();
-    this.getAllOrders();
+    this.getOrderUser(new Date());
+    this.getAllOrders(new Date());
     this.access = JSON.parse(
       localStorage.getItem('access') || null || ' '
     ).access;
@@ -26,46 +25,59 @@ export class OrdersComponent implements OnInit {
   ordersUser: Product[] = [];
   Allorders: Product[] = [];
   totalSum: number = 0;
-  getOrderUser() {
-    this.productServer.userProductThatUserBuy().subscribe({
+
+  getOrderUser(MonthYear: any) {
+    let orders: Product[] = [];
+    if (MonthYear.value != undefined) this.date = MonthYear.value.monthYear;
+    else this.date = new Date();
+    this.orderService.userProductThatUserBuy().subscribe({
       next: (v) => {
         console.log(v);
-        this.ordersUser = v;
-        for (let i = 0; i < this.ordersUser.length; i++) {
-          this.totalSum += this.ordersUser[i].price;
+        let index = 0;
+        for (let i = 0; i < v.length; i++) {
+          if (
+            format(new Date(this.date), 'YYYY-MM') ==
+            format(new Date(v[i].date), 'YYYY-MM')
+          ) {
+            this.totalSum += v[i].product.price;
+            v[i].date = format(new Date(v[i].date), 'YYYY-MM-DD');
+            orders[index] = v[i].product;
+            orders[index++].date = v[i].date;
+          }
         }
+        this.ordersUser = orders;
       },
       error: (e) => {
         console.log(e);
       },
     });
   }
-  getAllOrders() {
+  getAllOrders(MonthYear: any) {
+    let allOrders: Product[] = [];
+    if (MonthYear.value != undefined) this.date = MonthYear.value.monthYear;
+    else this.date = new Date();
     this.orderService.getAllOrder().subscribe({
       next: (v) => {
         console.log(v);
-        this.Allorders = v;
-        for (let i = 0; i < this.Allorders.length; i++) {
-          this.totalSum += this.Allorders[i].price;
+        let index = 0;
+        for (let i = 0; i < v.length; i++) {
+          if (
+            format(new Date(this.date), 'YYYY-MM') ==
+            format(new Date(v[i].date), 'YYYY-MM')
+          ) {
+            this.totalSum += v[i].product.price;
+            v[i].date = format(new Date(v[i].date), 'YYYY-MM-DD');
+            allOrders[index] = v[i].product;
+            allOrders[index++].date = v[i].date;
+          } else {
+            console.log(this.totalSum);
+            this.totalSum = 0;
+            console.log(this.totalSum);
+          }
         }
-      },
-      error: (e) => {
-        console.log(e);
-      },
-    });
-  }
-  makePDF(): void {
-    let pdf = new jsPDF('p', 'pt', 'a4');
-    pdf.html(this.el?.nativeElement, {
-      callback: (pdf) => {
-        pdf.save('demo.pdf');
-      },
-    });
-  }
-  delivered(checkOut: Product) {
-    this.orderService.updateCheckout(checkOut).subscribe({
-      next: (v) => {
-        console.log(v);
+        index = 0;
+        console.log(index);
+        this.Allorders = allOrders;
       },
       error: (e) => {
         console.log(e);

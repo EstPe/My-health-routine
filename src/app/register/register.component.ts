@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   constructor(private UserServic: UserService, private router: Router) {}
 
   ngOnInit(): void {}
-  user = new User('', '', '', 0, '', '', 0, '', 0);
+  user = new User('', '', '', 0, '', '', 0, '', 0, 0, 0, 0);
 
   testingValidation(SignUp: NgForm): boolean {
     // testing

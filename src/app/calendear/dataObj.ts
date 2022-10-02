@@ -68,7 +68,6 @@ export class dataObj {
     let timeHour, timeMinutes;
     let day = new Date(medicneUser.StartDay);
     let endDay = new Date(date);
-
     timeHour = alart.substring(0, 2);
     timeMinutes = alart.substring(3, 5);
     dataobj.id = i;
@@ -91,39 +90,6 @@ export class dataObj {
     dataobj.isAllDay = false;
     dataobj.IsReadonly = true;
 
-    return dataobj;
-  }
-  afterApproveNot(
-    medicneUser: MedicneUser,
-    alart: string,
-    i: number,
-    text: string
-  ) {
-    let dataobj = new dataObj(0, '', new Date(), new Date(), false, false, '');
-    let timeHour, timeMinutes;
-    let day = new Date(medicneUser.StartDay);
-    let endDay = new Date(medicneUser.StartDay);
-    timeHour = alart.substring(0, 2);
-    timeMinutes = alart.substring(3, 5);
-    dataobj.id = i;
-    dataobj.eventName = `med taken ${text}`;
-    dataobj.startTime = new Date(
-      day.getFullYear(),
-      day.getMonth(),
-      endDay.getDate(),
-      Number(timeHour),
-      Number(timeMinutes)
-    );
-
-    dataobj.endTime = new Date(
-      day.getFullYear(),
-      day.getMonth(),
-      endDay.getDate(),
-      Number(timeHour) + 1,
-      Number(timeMinutes)
-    );
-    dataobj.isAllDay = false;
-    dataobj.IsReadonly = true;
     return dataobj;
   }
 }

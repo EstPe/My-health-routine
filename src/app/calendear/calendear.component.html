@@ -5,7 +5,7 @@
             <div class="row card0">
                 <div class="card1 col-lg-8 col-md-7">
                     <div class="text-center">
-                        <ejs-schedule width="100%" height="650px" [eventSettings]="eventSettings" [selectedDate]="selectedDate" [currentView]="setView">
+                        <ejs-schedule width="100%" height="750px" [eventSettings]="eventSettings" [selectedDate]="selectedDate" [currentView]="setView">
                             <e-views>
                                 <e-view option="Month"></e-view>
                             </e-views>
@@ -49,35 +49,35 @@
                     <div class="mr-5" *ngFor="let med of medicneUser">
                         <!-- <p>ddddd</p>
                     </div> -->
-                        <!-- <ng-container *ngIf="!edit && medForCurrentMonth"> -->
-                        <p class="light-text suggestion">
-                            <span> Medicne Name </span>: {{ med.MedicneName }}
-                        </p>
-                        <p class="light-text suggestion">
-                            <span> Taking Time </span>: {{ med.TakingTime.Morning.time }} {{ med.TakingTime.Noon.time }} {{ med.TakingTime.Evening.time }}
-                        </p>
-                        <p class="light-text suggestion">
-                            <span> Amount Of Pills </span>: {{ med.AmountOfPills }}
-                        </p>
-                        <p class="light-text suggestion">
-                            <span> For </span>: {{ med.ForHowLong + duration }} days
-                        </p>
-                        <p class="light-text suggestion">
-                            <span> Mg Quantity </span>: {{ med.MgQuantity }}
-                        </p>
-                        <p class="light-text suggestion">
-                            <span> Start Day </span>: {{ med.StartDay }}
-                        </p>
-                        <p class="light-text suggestion">
-                            <span>Total Amount Of Pills:
-                {{ med.AmountOfPills * med.ForHowLong }}</span
-              >
-            </p>
-            <p class="light-text suggestion">
-              <span>Total days left: {{ med.ForHowLong }}</span>
-                        </p>
-                        <div class="line my-5"></div>
-                        <!-- </ng-container> -->
+                        <ng-container *ngIf="!edit">
+                            <p class="light-text suggestion">
+                                <span> Medicne Name </span>: {{ med.MedicneName }}
+                            </p>
+                            <p class="light-text suggestion">
+                                <span> Taking Time </span>: {{ med.TakingTime.Morning.time }} {{ med.TakingTime.Noon.time }} {{ med.TakingTime.Evening.time }}
+                            </p>
+                            <p class="light-text suggestion">
+                                <span> Amount Of Pills </span>: {{ med.AmountOfPills }}
+                            </p>
+                            <p class="light-text suggestion">
+                                <span> For </span>: {{ med.ForHowLong + duration }} days
+                            </p>
+                            <p class="light-text suggestion">
+                                <span> Mg Quantity </span>: {{ med.MgQuantity }}
+                            </p>
+                            <p class="light-text suggestion">
+                                <span> Start Day </span>: {{ med.StartDay }}
+                            </p>
+                            <p class="light-text suggestion">
+                                <span>Total Amount Of Pills:
+                  {{ med.AmountOfPills + count * med.ForHowLong }}</span
+                >
+              </p>
+              <p class="light-text suggestion">
+                <span>Total days left: {{ med.ForHowLong }}</span>
+                            </p>
+                            <div class="line my-5"></div>
+                        </ng-container>
 
                         <!-- edit med -->
                         <img (click)="delete(med)" class="img" style="width: 5%; height: 10%; margin-left: 90%" src="https://img.icons8.com/office/30/000000/cancel.png " *ngIf="edit" />

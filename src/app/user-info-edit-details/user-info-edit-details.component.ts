@@ -14,7 +14,7 @@ export class UserInfoEditDetailsComponent implements OnInit {
     private router: Router
   ) {}
   userId: string = '';
-  userInfo = new User('', '', '', 0, '', ' ', 0, '', 0);
+  userInfo = new User('', '', '', 0, '', ' ', 0, '', 0, 0, 0, 0);
 
   ngOnInit(): void {
     this.userId = this.acRout.snapshot.params['id'];

@@ -102,16 +102,7 @@ export class CalendearComponent implements OnInit {
       this.take.Morning.alert = medicneUser.value.alartM;
     }
   }
-  // deleteMedUserByCourrentDay() {
-  //   this.MedicneUserService.deleteMedicneUserByCurrentDay().subscribe({
-  //     next: (v) => {
-  //       console.log(v);
-  //     },
-  //     error: (e) => {
-  //       console.log(e);
-  //     },
-  //   });
-  // }
+
   onSave(medicneUser: NgForm) {
     this.validator(medicneUser);
     console.log(medicneUser.value);
@@ -140,20 +131,29 @@ export class CalendearComponent implements OnInit {
   day: string = '';
   monthYear: any;
   public selectedDate: Date = new Date();
+  count: number = 0;
   getMedicneUsers(newMonthYear: any) {
     if (newMonthYear.value != undefined)
       this.monthYear = newMonthYear.value.monthYear;
     else this.monthYear = new Date();
     this.selectedDate = new Date(this.monthYear);
-    console.log(new Date(this.monthYear).getMonth() + 1);
     this.MedicneUserService.getMedicneUser(this.monthYear).subscribe({
       next: (v) => {
         for (let i = 0; i < v.length; i++) {
-          v[i];
           v[i].StartDay = format(new Date(v[i].StartDay), 'YYYY-MM-DD');
           this.medicneUser.push(v[i]);
+          if (v[i].TakingTime.Morning.time != '') {
+            this.count++;
+          }
+          if (v[i].TakingTime.Noon.time != '') {
+            this.count++;
+          }
+          if (v[i].TakingTime.Evening.time != '') {
+            this.count++;
+          }
           // this.medForCurrentMonth = true;
         }
+        console.log(this.count);
         this.listMedOfUser();
         this.duration = Number(
           JSON.stringify(this.medicneUser[0].StartDay).substring(10, 11)
@@ -187,6 +187,7 @@ export class CalendearComponent implements OnInit {
             j++,
             'Morning'
           );
+          console.log(this.objdata);
           this.data.push(this.objdata);
         }
       }

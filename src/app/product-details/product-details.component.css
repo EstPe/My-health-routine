@@ -171,3 +171,20 @@ select,
 .btn {
     color: orange;
 }
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #76b7e9;
+    outline: 0;
+    box-shadow: 0 0 0 0px #28a745;
+}
+
+.btn {
+    font-size: 15px;
+    color: white;
+    background: #5f9ea0;
+    border: none;
+    border-radius: 5px;
+    margin-top: 5%;
+}

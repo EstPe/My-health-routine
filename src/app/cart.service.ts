@@ -10,16 +10,7 @@ export class CartService {
 
   headers = { 'content-type': 'application/json' };
   constructor(private http: HttpClient) {}
-  quantityCart() {
-    let len = JSON.parse(localStorage.getItem('quantity') || ' ');
-    if (len) {
-      len++;
-      localStorage.setItem('quantity', len);
-    } else {
-      len = 1;
-      localStorage.setItem('quantity', len);
-    }
-  }
+
   addToCart(add_to_cart: any): Observable<any> {
     let body = JSON.stringify(add_to_cart);
     return this.http.put(

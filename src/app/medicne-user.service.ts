@@ -35,19 +35,16 @@ export class MedicneUserService {
     );
   }
 
-  // deleteMedicneUserByCurrentDay(): Observable<any> {
-  //   return this.http.delete(this.baseURL + 'deleteMedUserByCourrentDay');
-  // }
   sendEmailReminder(): Observable<any> {
     return this.http.get(this.baseURL + 'sendReminder');
   }
   approve(): Observable<any> {
     return this.http.get(this.baseURL + 'approved');
   }
-
-  // notApproveIgnor(): Observable<any> {
-  //   return this.http.get(this.baseURL + 'notApprovedIgnor');
-  // }
+  //add
+  Notapprove(): Observable<any> {
+    return this.http.get(this.baseURL + 'didnotAprov');
+  }
 }
 
 export class Times {

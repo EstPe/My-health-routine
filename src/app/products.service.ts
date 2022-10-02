@@ -58,9 +58,7 @@ export class ProductsService {
       this.baseURL + 'deleteProduct/' + product.SerialNumber
     );
   }
-  userProductThatUserBuy(): Observable<any> {
-    return this.http.get('http://localhost:8000/api/Order/getUserOrder');
-  }
+
   soldOut(): Observable<any> {
     return this.http.get(this.baseURL + 'soldOut');
   }
@@ -81,6 +79,10 @@ export class ProductsService {
   getAllCommand(SerialNumber: number): Observable<any> {
     return this.http.get(this.baseURL + 'getAllCommands/' + SerialNumber);
   }
+
+  getStatistics(): Observable<any> {
+    return this.http.get('http://localhost:8000/api/Statistics/getStatistics');
+  }
 }
 export class Product {
   _id: string;
@@ -92,6 +94,7 @@ export class Product {
   image: string;
   category: string;
   description: string;
+  date: string;
 
   constructor(
     _id: string,
@@ -102,7 +105,8 @@ export class Product {
     price: number,
     image: string,
     category: string,
-    description: string
+    description: string,
+    date: string
   ) {
     this._id = _id;
     this.SerialNumber = SerialNumber;
@@ -113,5 +117,6 @@ export class Product {
     this.image = image;
     this.category = category;
     this.description = description;
+    this.date = date;
   }
 }

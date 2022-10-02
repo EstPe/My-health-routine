@@ -19,7 +19,7 @@ export class ProductsComponent implements OnInit {
   ) {}
   @Input() categoryName: any = '';
 
-  product = new Product('', 0, '', 0, 0, 0, ' ', '', '');
+  product = new Product('', 0, '', 0, 0, 0, ' ', '', '', '');
   productArr: Product[] = [];
   img: string = '';
   edit: boolean = false;
@@ -75,15 +75,28 @@ export class ProductsComponent implements OnInit {
       };
       this.CartService.addToCart(this.cartProUser).subscribe({
         next: (v) => {
+          console.log(v);
+          this.getCarts();
           alert('product added to cart');
-          this.CartService.quantityCart();
           window.location.reload();
         },
         error: (e) => {
-          alert("can not added to cart because there's not enough quantity");
+          alert("can not added to cart because it's about to sold out");
         },
       });
     } else alert('product sold out can not add to cart');
+  }
+  //add
+  getCarts() {
+    this.CartService.getCart().subscribe({
+      next: (v) => {
+        localStorage.setItem('quantity', JSON.stringify(v[0].Cart.length));
+        // window.location.reload();
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
   }
   //add
   maxSales() {

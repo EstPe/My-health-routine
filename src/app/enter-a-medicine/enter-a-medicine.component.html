@@ -12,7 +12,6 @@
             <div class="search-hero">
                 <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a Medicne" style="width: 40%" />
             </div>
-            <!-- <input type="text" ngModel name="MedicneName" style="width: 20%" placeholder="Name" /> -->
             <br />
             <div *ngIf="managerAccess > 1">
                 <app-medicines-database></app-medicines-database>
@@ -48,13 +47,14 @@
             <!-- <div style="border: solid"> -->
 
             <!-- open clock morning -->
-            <label class="chat-btn" for="check" style="margin-right: 85%" (click)="OpenM()">
+            <label class="chat-btn" style="margin-right: 85%">
         <input
           type="checkbox"
           ngModel
           name="Morning"
           value="Morning"
           style="width: 15%"
+          (click)="OpenM()"
         />&nbsp;&nbsp;Morning</label
       >
       <ng-container *ngIf="openM">
@@ -68,7 +68,6 @@
             style="width: 20%"
           />&nbsp;&nbsp;
 
-          <span class="validity"></span>
           <div>
             <label for="appt-time" style="font-size: 20px"
               >Morning (05:00 to 12:00):
@@ -77,13 +76,14 @@
         </div>
         </ng-container>
         <!-- clock noon -->
-        <label class="chat-btn" for="check" style="margin-right: 88%" (click)="OpenN()">
+        <label class="chat-btn" style="margin-right: 88%">
         <input
           type="checkbox"
           ngModel
           name="Noon"
           value="Noon"
           style="width: 18%"
+          (click)="OpenN()"
         />&nbsp;&nbsp;Noon</label
       >
       <ng-container *ngIf="openN">
@@ -97,7 +97,6 @@
             style="width: 20%"
           />&nbsp;&nbsp;
 
-          <span class="validity"></span>
           <div>
             <label for="appt-time" style="font-size: 20px"
               >Noon (13:00 to 18:00):
@@ -107,13 +106,14 @@
         </ng-container>
 
         <!-- open clock Evening-->
-        <label class="chat-btn" for="check" style="margin-right: 85%" (click)="OpenE()">
+        <label class="chat-btn" style="margin-right: 85%">
         <input
           type="checkbox"
           ngModel
           name="Evening"
           value="Evening"
           style="width: 15%"
+          (click)="OpenE()"
         />&nbsp;&nbsp;Evening</label
       >
       <ng-container *ngIf="openE">
@@ -127,7 +127,6 @@
             max="00:00"
           />&nbsp;&nbsp;
 
-          <span class="validity"></span>
           <div>
             <label for="appt-time" style="font-size: 20px"
               >Evening (19:00 to 00:00):
@@ -147,7 +146,7 @@
         <br />
 
         <div class="input-group">
-            <label>For period of time: &nbsp;&nbsp;</label>
+            <label>For period of time:(days) &nbsp;&nbsp;</label>
             <input type="number" ngModel id="ForHowLong" name="ForHowLong" min="0" max="100" step="1" value="0" style="width: 10%" required />
             <div class="help-tip" style="margin-right: 50%; margin-top: -2%">
                 <p>treatment for 2 week (write 14 days)</p>

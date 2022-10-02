@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
   constructor(public UserService: UserService) {}
   userImage: string = '';
   len: number = 0;
+  access: number;
   ngOnInit(): void {
     this.UserService.userInfo().subscribe({
       next: (v) => {
@@ -18,7 +19,11 @@ export class NavbarComponent implements OnInit {
       },
       error: (e) => {},
     });
-    if (localStorage.getItem('quantity') || ' ')
+    this.access = JSON.parse(
+      localStorage.getItem('access') || null || ' '
+    ).access;
+    console.log(this.access);
+    if (localStorage.getItem('quantity'))
       this.len = JSON.parse(localStorage.getItem('quantity') || ' ');
   }
 }

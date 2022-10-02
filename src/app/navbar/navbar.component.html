@@ -31,12 +31,15 @@
 
             <a class="w3-bar-item w3-button" routerLink="/userInfo" style="font-size: 20px"><span class="glyphicon glyphicon-user"></span> Your Account</a
         >
-
         <a
           class="w3-bar-item w3-button"
-          routerLink="/order"
+          routerLink="/Statistics"
           style="font-size: 20px"
-          ><span></span>orders</a
+          *ngIf="access == 3"
+          ><span class="glyphicon glyphicon-user"></span>Statistics
+        </a>
+
+            <a class="w3-bar-item w3-button" routerLink="/order" style="font-size: 20px"><span></span>orders</a
         >
         <!--*ngIf="flagLogInOut"
           else -->

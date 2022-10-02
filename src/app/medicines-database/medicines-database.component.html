@@ -90,14 +90,22 @@
             name="search"
             [(ngModel)]="MedicneName"
             autocomplete="off"
-            placeholder="searching Medicne or add"
-            style="width: 40%"
+            placeholder="searching Medicne"
+            style="width: 45%; height: 50px"
           />
           &nbsp;&nbsp;&nbsp;
         </div>
-        <table class="table" *ngFor="let med of medicnes | filter: MedicneName">
+        <table class="table">
           <tr>
+            <th>Med name</th>
+            <th>Amount Of Pills</th>
+            <th>For How Long (by Days)</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let med of medicnes | filter: MedicneName">
             <td>{{ med.nameMed }} {{ med.size }} MG</td>
+            <td>{{ med.takingRecommend.AmountOfPills }}</td>
+            <td>{{ med.takingRecommend.ForHowLong }}</td>
             <td>
               <a
                 style="color: #3279a8; text-decoration: underline"

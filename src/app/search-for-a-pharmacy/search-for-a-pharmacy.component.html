@@ -39,27 +39,27 @@
     <!-- *ngIf="!pharmacyDetails[0].namePharmacy" -->
     <ng-container *ngFor="let pharmacy of pharmacies">
         <ng-container *ngIf="!falg">
-            <div style="margin-left: 25%; margin-top: 5%">
-                <h1>{{ pharmacy.namePharmacy }}</h1>
-                <h1>Tel: {{ pharmacy.phone }}</h1>
-                <h1>More details:</h1>
-            </div>
-            <input type="checkbox" id="check" style="border-bottom: solid" />
-            <label class="chat-btn" for="check" style="margin-left: 65%">
-        <i class="fa fa-plus comment"></i>
-        <i class="fa fa-close close"></i>
-      </label>
-            <!-- style="border: solid; margin-left: 25%; padding: 5%" -->
-            <div class="wrapper">
-                <div class="header">
-                    <h1>Address</h1>
+            <div style="margin-left: 25%; margin-top: 3%">
+                <h1 style="font-family: aharoni; font-size: 40px">
+                    {{ pharmacy.namePharmacy }}
+                </h1>
+                <div style="margin-left: 3%">
+                    <h1>Tel: {{ pharmacy.phone }}</h1>
+                    <br />
+                    <h1 style="font-family: 'Courier New', Courier, monospace">
+                        More details:
+                    </h1>
+                    <h1>Address:</h1>
                     <h1>
                         {{ pharmacy.address.citiy }} {{ pharmacy.address.street }}, {{ pharmacy.address.numberStreet }}
                     </h1>
-                    <h1>Store hours</h1>
+                    <h1>Store hours:</h1>
                     <h2>{{ pharmacy.openingDescription }}</h2>
                 </div>
             </div>
+
+            <!-- style="border: solid; margin-left: 25%; padding: 5%" -->
+
             <hr class="hrline" />
         </ng-container>
     </ng-container>
@@ -69,9 +69,13 @@
     <ng-container *ngIf="falg">
         <ng-container *ngFor="let pharmacyDetails of pharmacyDetails">
             <div style="margin-left: 25%; margin-top: 5%" *ngIf="pharmacyDetails.namePharmacy">
-                <h1>{{ pharmacyDetails.namePharmacy }}</h1>
+                <h1 style="font-family: aharoni; font-size: 40px">
+                    {{ pharmacyDetails.namePharmacy }}
+                </h1>
                 <h1>tel: {{ pharmacyDetails.phone }}</h1>
-                <h1>More details:</h1>
+                <h1 style="font-family: 'Courier New', Courier, monospace">
+                    More details:
+                </h1>
             </div>
             <input type="checkbox" id="check" style="border-bottom: solid" *ngIf="pharmacyDetails.namePharmacy" />
             <label class="chat-btn" for="check" style="margin-left: 65%" *ngIf="pharmacyDetails.namePharmacy">

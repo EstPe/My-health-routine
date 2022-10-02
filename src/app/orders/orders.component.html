@@ -16,6 +16,12 @@
                                                 <hr />
 
                                                 <br />
+                                                <form #date="ngForm" style="margin-right: 70%" (ngSubmit)="getOrderUser(date)">
+                                                    <input type="month" style="width: 55%" name="monthYear" ngModel />
+                                                    <button type="submit" class="btn" name="register_btn" style="font-size: 20px; border: solid black">
+                            Submit
+                          </button>
+                                                </form>
                                                 <div class="d-flex justify-content-between align-items-center mt-5 p-2 items rounded box" *ngFor="let cartIndex of ordersUser">
                                                     <div class="d-flex flex-row">
                                                         <img class="rounded" src="{{ cartIndex.image }}" width="250" />
@@ -26,6 +32,8 @@
                               ><span class="spec"
                                 >{{ cartIndex.category }}
                               </span>
+                                                            <span class="font-weight-bold d-block">Date:{{ cartIndex.date }}
+                              </span>
                                                         </div>
                                                     </div>
 
@@ -34,6 +42,26 @@
                               &#8362;{{ cartIndex.price }}</span
                             >
                           </div>
+                          <div class="d-flex flex-row align-items-center">
+                            <a
+                              style="
+                                background-color: #199319;
+                                text-decoration: none;
+                                color: white;
+                                padding: 15px 25px;
+                                font-size: 25px;
+                              "
+                              [routerLink]="[
+                                '/product',
+                                cartIndex.SerialNumber
+                              ]"
+                            >
+                              reorder
+                            </a>
+                          </div>
+                        </div>
+                        <div style="margin-left: 30%; font-size: 25px">
+                          <p>Total purches : {{ this.totalSum }} &#8362;</p>
                         </div>
                         <hr
                           style="border: solid lightblue; border-width: 2px"
@@ -72,6 +100,26 @@
                         <hr />
 
                         <br />
+                        <form
+                          #date="ngForm"
+                          style="margin-right: 70%"
+                          (ngSubmit)="getAllOrders(date)"
+                        >
+                          <input
+                            type="month"
+                            style="width: 55%"
+                            name="monthYear"
+                            ngModel
+                          />
+                          <button
+                            type="submit"
+                            class="btn"
+                            name="register_btn"
+                            style="font-size: 20px; border: solid black"
+                          >
+                            Submit
+                          </button>
+                        </form>
                         <div
                           class="d-flex justify-content-between align-items-center mt-5 p-2 items rounded box"
                           *ngFor="let cartIndex of Allorders"
@@ -86,9 +134,11 @@
                               <div class="ml-2">
                                 <span class="font-weight-bold d-block">{{
                                   cartIndex.name
-                                }}</span
-                                ><span class="spec"
-                                  >{{ cartIndex.category }}
+                                }}</span>
+
+                                                        <span class="spec">{{ cartIndex.category }}ddd
+                                </span>
+                                                        <span class="font-weight-bold d-block">Date:{{ cartIndex.date }}
                                 </span>
                                                     </div>
                                                 </div>
@@ -98,12 +148,9 @@
                                 &#8362;{{ cartIndex.price }}</span
                               >
                             </div>
-                            <button
-                              class="btn btn-lg btn-primary"
-                              (click)="delivered(cartIndex)"
-                            >
-                              delivered
-                            </button>
+                            <!-- <ng-container *ngIf="cartIndex.date !=">
+
+                          </ng-container> -->
                           </ng-container>
                         </div>
                         <hr
@@ -123,43 +170,3 @@
     </div>
   </div>
 </div>
-
-<!-- <ng-container *ngIf="access > 1">
-  <input
-    type="button"
-    value="Download PDF"
-    class="btn btn-success"
-    (click)="makePDF()"
-  />
-  <div id="content" #content *ngIf="access > 1">
-    <h1>your order</h1>
-    <table class="table">
-      <thead style="width: 20%">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">name</th>
-          <th scope="col">category</th>
-          <th scope="col">Quantity</th>
-        </tr>
-      </thead>
-      <tbody style="width: 20%" *ngFor="let cartIndex of Allorders">
-        <tr>
-          <td><img src="{{ cartIndex.image }}" width="50" /></td>
-          <td>{{ cartIndex.name }}</td>
-          <td>{{ cartIndex.category }}</td>
-          <td>{{ cartIndex.Quantity }}</td>
-        </tr>
-      </tbody>
-      <tr style="width: 20%">
-        <td></td>
-        <td></td>
-        <td>quantity {{ Allorders.length }}</td>
-      </tr>
-      <tr style="width: 20%">
-        <td></td>
-        <td></td>
-        <td>total {{ totalSum }}</td>
-      </tr>
-    </table>
-  </div>
-</ng-container> -->

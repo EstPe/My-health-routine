@@ -34,7 +34,6 @@ export class MedDatabaseService {
   }
   overTake(med: Object): Observable<any> {
     let body = JSON.stringify(med);
-    console.log(body);
     return this.http.post(this.baseURL + 'overTake', body, {
       headers: this.headers,
     });

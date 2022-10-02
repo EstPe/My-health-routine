@@ -14,16 +14,19 @@ export class ReminderComponent implements OnInit {
     this.medService.approve().subscribe({
       next: (v) => {
         console.log(v);
+        alert('approved');
       },
       error: (e) => {
         console.log(e);
       },
     });
   }
-  // notApproveIgnor() {
-  //   this.medService.notApproveIgnor().subscribe({
-  //     next: (v) => {},
-  //     error: (e) => {},
-  //   });
-  // }
+  notApproveIgnor() {
+    this.medService.Notapprove().subscribe({
+      next: (v) => {
+        alert('did not approved');
+      },
+      error: (e) => {},
+    });
+  }
 }

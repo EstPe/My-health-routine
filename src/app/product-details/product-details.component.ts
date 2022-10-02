@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { OrderService } from '../order.service';
 import { Product, ProductsService } from '../products.service';
 
 @Component({
@@ -13,10 +14,10 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private acRout: ActivatedRoute,
     private productService: ProductsService,
-    private router: Router,
-    private CartService: CartService
+    private CartService: CartService,
+    private orderService: OrderService
   ) {}
-  product = new Product('', 0, '', 0, 0, 0, ' ', '', '');
+  product = new Product('', 0, '', 0, 0, 0, ' ', '', '', '');
 
   SerialNumber: number;
   access: number;
@@ -98,17 +99,28 @@ export class ProductDetailsComponent implements OnInit {
       };
       this.CartService.addToCart(this.cartProUser).subscribe({
         next: (v) => {
-          console.log(v);
           alert('product added to cart');
+          this.getCarts();
+          window.location.reload();
         },
         error: (e) => {
-          console.log(e);
           if (e.status == 401)
             alert("can not added to cart because there's not enough quantity");
           // else alert('product already in cart');
         },
       });
     } else alert('product sold out can not add to cart');
+  }
+  getCarts() {
+    this.CartService.getCart().subscribe({
+      next: (v) => {
+        localStorage.setItem('quantity', JSON.stringify(v[0].Cart.length));
+        // window.location.reload();
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
   }
   submitCommand() {
     let commandUser = {
@@ -117,7 +129,6 @@ export class ProductDetailsComponent implements OnInit {
     };
     this.productService.addCommand(commandUser).subscribe({
       next: (v) => {
-        console.log(v);
         window.location.reload();
       },
       error: (e) => {
@@ -131,16 +142,17 @@ export class ProductDetailsComponent implements OnInit {
       next: (v) => {
         console.log(v);
         this.commands = v[0].Reviews;
-        console.log(this.commands);
       },
       error: (e) => {},
     });
   }
   getOrderUser() {
-    this.productService.userProductThatUserBuy().subscribe({
+    this.orderService.userProductThatUserBuy().subscribe({
       next: (v) => {
         console.log(v);
-        this.orders = v;
+        for (let i = 0; i < v.length; i++) {
+          this.orders.push(v[i].product);
+        }
       },
       error: (e) => {
         console.log(e);

@@ -110,6 +110,9 @@ export class User {
   access: number;
   token: string;
   loginAttempts: number;
+  height: number;
+  weight: number;
+  age: number;
 
   constructor(
     id: string,
@@ -120,7 +123,10 @@ export class User {
     image: string,
     acccess: number,
     token: string,
-    logniAttempts: number
+    logniAttempts: number,
+    height: number,
+    weight: number,
+    age: number
   ) {
     this._id = id;
     this.name = name;
@@ -131,5 +137,8 @@ export class User {
     this.access = acccess;
     this.token = token;
     this.loginAttempts = logniAttempts;
+    this.height = height;
+    this.weight = weight;
+    this.age = age;
   }
 }

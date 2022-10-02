@@ -8,9 +8,7 @@
                 <!-- user name -->
                 <input id="username" type="text" ngModel name="name" placeholder="User name" />
                 <!-- password -->
-                <small style="font-size: 20px; margin-top: 5%" *ngIf="!password?.valid && (password?.dirty || password?.touched)">
-          Invalid password
-        </small>
+
                 <input id="password" type="password" ngModel name="password" #password="ngModel" minlength="8" placeholder="Password" />
                 <!-- phone -->
 

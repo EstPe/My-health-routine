@@ -13,22 +13,34 @@ export class HealthStatementComponent implements OnInit {
 
   Height: number = 1.6;
   Weight: number = 60;
+  age: number;
   ngOnInit(): void {}
+  flag: boolean = false;
+  policyF: boolean = false;
+  openYes() {
+    if (!this.flag) this.flag = true;
+    else this.flag = false;
+  }
+  policy() {
+    if (!this.policyF) this.policyF = true;
+  }
   onSubmit() {
-    let userHealth = {
-      height: this.Height,
-      weight: this.Weight,
-    };
-    console.log(userHealth);
-    this.userSerivce.HealthStatement(userHealth).subscribe({
-      next: (v) => {
-        console.log(v);
-      },
-      error: (e) => {
-        console.log(e);
-      },
-    });
-    // this.fileHealthStatement = true;
-    this.router.navigateByUrl('/home');
+    if (this.policyF) {
+      let userHealth = {
+        height: this.Height,
+        weight: this.Weight,
+        age: this.age,
+      };
+      this.userSerivce.HealthStatement(userHealth).subscribe({
+        next: (v) => {
+          console.log(v);
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
+      // this.fileHealthStatement = true;
+      this.router.navigateByUrl('/home');
+    } else alert('please mark the policy ');
   }
 }

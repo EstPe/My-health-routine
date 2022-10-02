@@ -1,4 +1,13 @@
-.wrapperr label {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins;
+    text-decoration: none;
+    list-style: none;
+}
+
+.wrapper label {
     background: #262626;
     border-radius: 50px;
     color: #fff;
@@ -40,17 +49,15 @@
 }
 
 .bx1 {
-    /* background-image: url(https://img.freepik.com/premium-vector/pharmacy-background-pharmacy-design-pharmacy-templates-medicine-pharmacy-hospital-set-drugs-with-labels-medication-pharmaceutics-concept-different-medical_203228-81.jpg); */
-    /* -webkit-background-size: cover;
+    background-image: url(https://cdn2.mageplaza.com/media/general/OnWj0is.png);
+    -webkit-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center; */
-    margin-bottom: 10px;
-    text-transform: uppercase;
+    background-position: center center;
 }
 
 .bx2 {
-    padding: 55px;
+    padding: 60px;
 }
 
 .bx2 h3 {
@@ -68,7 +75,7 @@
 
 .login-form input[type="submit"] {
     background: deepskyblue;
-    font-size: 25px;
+    font-size: 30px;
     text-transform: uppercase;
     line-height: 20px;
     color: #fff;
@@ -95,13 +102,4 @@
 
 #chkBox:checked+.mainContnt .box {
     transform: translateY(0);
-}
-
-.scroll {
-    scroll-behavior: smooth;
-}
-
-td,
-th {
-    font-size: 20px;
 }

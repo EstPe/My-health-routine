@@ -22,16 +22,8 @@ export class CartComponent implements OnInit {
   quantityFromCart: number;
   ngOnInit(): void {
     this.getCarts();
-    console.log(CartComponent.lenCart);
   }
-  makePDF(): void {
-    let pdf = new jsPDF('p', 'pt', 'a4');
-    pdf.html(this.el?.nativeElement, {
-      callback: (pdf) => {
-        pdf.save('demo.pdf');
-      },
-    });
-  }
+
   nextStep(name: string) {
     this.nameOfCategory = name;
   }
@@ -80,6 +72,8 @@ export class CartComponent implements OnInit {
           this.quantityFromCart = v[0].Cart[i].quantity;
           this.getProduct(v[0].Cart[i].productId, v[0].Cart[i].quantity);
         }
+        localStorage.setItem('quantity', JSON.stringify(v[0].Cart.length));
+        // window.location.reload();
       },
       error: (e) => {
         console.log(e);
@@ -90,11 +84,22 @@ export class CartComponent implements OnInit {
     this.productService.getProduct(productId).subscribe({
       next: (v) => {
         v.Quantity = quantity;
-        this.totalSum += v.price;
+        this.totalSum += v.price * v.Quantity;
         this.cart.push(v);
       },
+
       error: (e) => {},
     });
+  }
+  getPrice(ele: any) {
+    if (ele.target.value == 'price (Low to high)') this.sortByPriceLowToHigh();
+    else this.sortByPriceHighToLow();
+  }
+  sortByPriceLowToHigh() {
+    this.cart.sort((a, b) => a.price - b.price);
+  }
+  sortByPriceHighToLow() {
+    this.cart.sort((b, a) => a.price - b.price);
   }
   delete(cart: Product) {
     let carts = {
@@ -106,7 +111,7 @@ export class CartComponent implements OnInit {
         window.location.reload();
         let len = JSON.parse(localStorage.getItem('quantity') || ' ');
         len--;
-        localStorage.setItem('quantity', len);
+        if (len >= 0) localStorage.setItem('quantity', len);
       },
       error: (e) => console.log(e),
     });

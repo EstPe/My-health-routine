@@ -20,7 +20,6 @@ export class MedicinesDatabaseComponent implements OnInit {
     AmountOfPills: number;
     ForHowLong: number;
   };
-  // MgQuantity: string;
 
   getMedicnes() {
     this.MedicneService.getMedicnes().subscribe({

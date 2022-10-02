@@ -93,8 +93,6 @@ export class EnterAMedicineComponent implements OnInit {
       ForHowLong: medicneUser.value.ForHowLong,
       StartDay: medicneUser.value.StartDay,
     };
-    // let flag = false;
-    // console.log(this.overTake(this.usermedicne));
     this.MedicneService.overTake(this.usermedicne).subscribe({
       next: (v) => {
         console.log(v);
@@ -130,14 +128,6 @@ export class EnterAMedicineComponent implements OnInit {
     });
   }
 
-  // getMedicneUser() {
-  //   this.MedicneUserService.getMedicneUser().subscribe({
-  //     next: (v) => {
-  //       this.medicneUser = v;
-  //     },
-  //     error: (e) => {},
-  //   });
-  // }
   getMedicnes() {
     this.MedicneService.getMedicnes().subscribe({
       next: (v) => {

@@ -7,20 +7,14 @@ import { Product } from './products.service';
   providedIn: 'root',
 })
 export class OrderService {
-  baseURL: string = 'http://localhost:8000/api/checkout/';
+  baseURL: string = 'http://localhost:8000/api/Order/';
   headers = { 'content-type': 'application/json' };
   constructor(private http: HttpClient) {}
-  getAllOrder(): Observable<any> {
-    return this.http.get(this.baseURL + 'checkouts');
+
+  userProductThatUserBuy(): Observable<any> {
+    return this.http.get(this.baseURL + 'getUserOrder');
   }
-  updateCheckout(checkOut: Product): Observable<any> {
-    let body = JSON.stringify(checkOut);
-    return this.http.put(
-      this.baseURL + 'updateDelivery/' + checkOut._id,
-      body,
-      {
-        headers: this.headers,
-      }
-    );
+  getAllOrder(): Observable<any> {
+    return this.http.get(this.baseURL + 'getOrders');
   }
 }

@@ -48,6 +48,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { ReminderComponent } from './reminder/reminder.component';
 import { BMIComponent } from './bmi/bmi.component';
 import { MedicinesDatabaseComponent } from './medicines-database/medicines-database.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { MedicinesDatabaseComponent } from './medicines-database/medicines-datab
     ReminderComponent,
     BMIComponent,
     MedicinesDatabaseComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,

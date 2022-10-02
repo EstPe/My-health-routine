@@ -59,7 +59,7 @@ const routes: Routes = [
   },
   {
     path: 'reminder',
-    component:ReminderComponent,
+    component: ReminderComponent,
   },
   {
     path: 'product/:SerialNumber',
@@ -93,6 +93,10 @@ const routes: Routes = [
   {
     path: 'Health-Statement',
     component: HealthStatementComponent,
+  },
+  {
+    path: 'Statistics',
+    component: StatisticsDiagramsComponent,
   },
   {
     path: 'forget-password',
