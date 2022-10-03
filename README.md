@@ -1,6 +1,6 @@
 # My Healthy Routine
   About:
-    theri is 4 features  
+   there is 4 features 
     1. search for a pharmacy  ,user can search by the name of the pharmacy  or address
     2. shop for natural product ,you can add to cart product and see their description
     3. add medicen, the web is about your health do if you take temporary med ,please enter the folowing qustion ,and the web will generated it to celander
